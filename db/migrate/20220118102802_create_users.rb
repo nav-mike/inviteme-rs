@@ -10,6 +10,9 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :crypted_password
       t.string :password_salt
 
+      t.string :persistence_token
+      t.index :persistence_token, unique: true
+
       t.integer :login_count, default: 0, null: false
       t.integer :failed_login_count, default: 0, null: false
       t.datetime :last_request_at

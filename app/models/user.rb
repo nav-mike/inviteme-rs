@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  acts_as_authentic
+  acts_as_authentic { _1.crypto_provider = ::Authlogic::CryptoProviders::SCrypt }
 
   validates :email, format: { with: /@/, message: 'should look like an email address.' },
                     length: { maximum: 100 },

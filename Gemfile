@@ -38,6 +38,7 @@ gem 'simple_form'
 gem "action_policy"
 gem 'authlogic'
 gem "rolify"
+gem "scrypt", "~> 3.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

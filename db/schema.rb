@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_102802) do
     t.string "last_name"
     t.string "crypted_password"
     t.string "password_salt"
+    t.string "persistence_token"
     t.integer "login_count", default: 0, null: false
     t.integer "failed_login_count", default: 0, null: false
     t.datetime "last_request_at", precision: 6
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_102802) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["persistence_token"], name: "index_users_on_persistence_token", unique: true
   end
 
 end

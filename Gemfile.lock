@@ -111,6 +111,9 @@ GEM
     erubi (1.10.0)
     eventmachine (1.2.7)
     ffi (1.15.5)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     formatador (0.3.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -235,6 +238,8 @@ GEM
     rolify (6.0.0)
     ruby-next-core (0.14.0)
     rubyzip (2.3.2)
+    scrypt (3.0.7)
+      ffi-compiler (>= 1.0, < 2.0)
     selenium-webdriver (4.1.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -298,6 +303,7 @@ DEPENDENCIES
   rails (~> 7.0.0)
   redis (~> 4.0)
   rolify
+  scrypt (~> 3.0)
   selenium-webdriver
   simple_form
   sprockets-rails
