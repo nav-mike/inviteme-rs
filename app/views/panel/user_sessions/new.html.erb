@@ -1,15 +1,22 @@
-<div class="bg-gray-900 w-screen h-screen flex">
-  <div>
-    <%= image_tag 'logo' %>
-    <h1>Log In to Invite Me Dashboard</h1>
-    <p>Enter your email and password below</p>
-    <%= simple_form_for @user_session, as: :user_session, method: :post, url: panel_sessions_path do |f| %>
-      <%= f.label :email %>
-      <%= f.input_field :email %>
-      <%= f.label :password %>
-      <%= f.input_field :password %>
-      <%= f.submit 'Login' %>
+<div class="bg-gray-900 w-screen h-screen flex content-center justify-center items-center">
+  <div class="flex flex-col content-center justify-center items-center bg-slate-100 rounded-xl p-10">
+    <%= image_tag 'logo', size: '150' %>
+    <h1 class="text-3xl p-2">Log In to Dashboard</h1>
+    <p class="p-2 text-slate-400 text-sm">Enter your email and password below</p>
+    <%= simple_form_for @user_session, as: :user_session, method: :post, url: panel_sessions_path, html: { class: 'w-full no-stars' } do |f| %>
+      <div class="flex flex-col w-full my-3 text-slate-400">
+        <%= f.label :email, class: 'uppercase my-1' %>
+        <%= f.input_field :email, placeholder: 'Email address', class: 'rounded-md p-2' %>
+      </div>
+      <div class="flex flex-col w-full mt-3 mb-5 text-slate-400">
+        <div class="my-1 flex justify-between">
+          <%= f.label :password, class: 'uppercase' %>
+          <%= link_to 'Forgot password?', '/', class: 'text-xs self-end hover:underline hover:text-blue-700' %>
+        </div>
+        <%= f.input_field :password, placeholder: 'Password', class: 'rounded-md p-2' %>
+      </div>
+      <%= f.submit 'Login', class: 'w-full bg-blue-700 text-white p-3 rounded-xl' %>
     <% end %>
-    <p>Don't have an account? <%= link_to 'Sign Up', '/' %></p>
+    <p class="pt-10 text-slate-400">Don't have an account? <%= link_to 'Sign Up', '/', class: 'text-blue-700 hover:underline' %></p>
   </div>
 </div>

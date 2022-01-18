@@ -13,7 +13,13 @@
  *= require_tree .
  *= require_self
  */
-.existing-css-file h1 {
-    font-size: 5rem;
-    color: #324343;
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+
+body {
+  font-family: 'Mulish', -apple-system, sans-serif;
+}
+
+form.no-stars abbr {
+  display: none;
 }
