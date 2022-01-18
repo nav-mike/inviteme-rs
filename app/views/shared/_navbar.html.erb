@@ -1,10 +1,18 @@
 <nav class="flex justify-between my-5">
+  <%= turbo_frame_tag :navbar do %>
+    <ul class="flex">
+      <li class="mx-5">
+        <%= link_to 'About', '/about', class: 'hover:bg-slate-300 hover:rounded-sm p-2', 'data-turbo-frame': 'pages' %>
+      </li>
+      <li class="mx-5">
+        <%= link_to 'Pricing', '/pricing', class: 'hover:bg-slate-300 hover:rounded-sm p-2', 'data-turbo-frame': 'pages' %>
+      </li>
+    </ul>
+  <% end %>
   <ul class="flex">
-    <li class="mx-5"><a class="hover:bg-slate-300 hover:rounded-sm p-2" href="/about">About</a></li>
-    <li class="mx-5"><a class="hover:rounded-sm hover:bg-slate-300 p-2" href="/pricing">Pricing</a></li>
-  </ul>
-  <ul class="flex">
-    <li  class="mx-5"><%= link_to 'Sign In', signin_path, class: 'hover:bg-slate-300 p-2 hover:rounded-sm' %></li>
+    <li  class="mx-5">
+      <%= link_to 'Sign In', signin_path, class: 'hover:bg-slate-300 p-2 hover:rounded-sm' %>
+    </li>
     <li  class="mx-5"><a class="hover:bg-slate-300 p-2 hover:rounded-sm" href="/signup">Sing Up</a></li>
   </ul>
 </nav>

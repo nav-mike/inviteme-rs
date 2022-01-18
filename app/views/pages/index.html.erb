@@ -1,8 +1,13 @@
-<%= render 'shared/navbar' %>
-<div class="existing-css-file">
-  <h1>This is old school sprockets css.</h1>
-</div>
+<div data-controller="navigation"
+     data-action="turbo:before-fetch-request@document->navigation#displayLoading
+                  turbo:before-fetch-response@document->navigation#displayContent">
+  <%= render 'shared/navbar' %>
 
-<div class="container mx-auto bg-slate-500">
-  <h1 class="text-3xl text-pink-900">This is Tailwind.</h1>
+  <%= turbo_frame_tag :pages, class: 'container', 'data-navigation-target': 'content' do %>
+    click to page
+  <% end %>
+
+  <div class="hidden" data-navigation-target="loading">
+    <%= image_tag 'loading.gif', size: '200' %>
+  </div>
 </div>
