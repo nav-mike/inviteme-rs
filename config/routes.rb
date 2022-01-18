@@ -1,16 +1,19 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  get '/signin', to: 'panel/session#new'
+  get '/signin', to: 'panel/user_sessions#new'
 
   namespace :panel do
+    resource :user_sessions, only: %i[create destroy], as: :sessions
   end
 
-  namespace :admin do
+  scope :admin do
   end
 
-  namespace :api do
+  scope :api do
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "pages#index"
+  root 'pages#index'
 end

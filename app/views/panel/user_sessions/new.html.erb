@@ -1,0 +1,15 @@
+<div class="bg-gray-900 w-screen h-screen flex">
+  <div>
+    <%= image_tag 'logo' %>
+    <h1>Log In to Invite Me Dashboard</h1>
+    <p>Enter your email and password below</p>
+    <%= simple_form_for @user_session, as: :user_session, method: :post, url: panel_sessions_path do |f| %>
+      <%= f.label :email %>
+      <%= f.input_field :email %>
+      <%= f.label :password %>
+      <%= f.input_field :password %>
+      <%= f.submit 'Login' %>
+    <% end %>
+    <p>Don't have an account? <%= link_to 'Sign Up', '/' %></p>
+  </div>
+</div>

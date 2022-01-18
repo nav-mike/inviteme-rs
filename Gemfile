@@ -34,6 +34,11 @@ gem 'jsbundling-rails'
 gem 'cssbundling-rails'
 gem 'simple_form'
 
+# authentication
+gem "action_policy"
+gem 'authlogic'
+gem "rolify"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

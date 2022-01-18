@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_policy (0.6.0)
+      ruby-next-core (>= 0.11.0)
     actioncable (7.0.1)
       actionpack (= 7.0.1)
       activesupport (= 7.0.1)
@@ -68,6 +70,11 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    authlogic (6.4.2)
+      activemodel (>= 5.2, < 7.1)
+      activerecord (>= 5.2, < 7.1)
+      activesupport (>= 5.2, < 7.1)
+      request_store (~> 1.0)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -222,7 +229,11 @@ GEM
     regexp_parser (2.2.0)
     reline (0.3.1)
       io-console (~> 0.5)
+    request_store (1.5.0)
+      rack (>= 1.4)
     rexml (3.2.5)
+    rolify (6.0.0)
+    ruby-next-core (0.14.0)
     rubyzip (2.3.2)
     selenium-webdriver (4.1.0)
       childprocess (>= 0.5, < 5.0)
@@ -269,6 +280,8 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  action_policy
+  authlogic
   better_errors
   binding_of_caller
   bootsnap
@@ -284,6 +297,7 @@ DEPENDENCIES
   rack-livereload
   rails (~> 7.0.0)
   redis (~> 4.0)
+  rolify
   selenium-webdriver
   simple_form
   sprockets-rails

@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  first_name: MyString
+  last_name: MyString
+  crypted_password: MyString
+  password_salt: MyString
+  login_count: 1
+  failed_login_count: 1
+  last_request_at: 2022-01-18 12:28:02
+  current_login_at: 2022-01-18 12:28:02
+  last_login_at: 2022-01-18 12:28:02
+  current_login_ip: MyString
+  last_login_ip: MyString
+  active: false
+  approved: false
+  confirmed: false
+
+two:
+  email: MyString
+  first_name: MyString
+  last_name: MyString
+  crypted_password: MyString
+  password_salt: MyString
+  login_count: 1
+  failed_login_count: 1
+  last_request_at: 2022-01-18 12:28:02
+  current_login_at: 2022-01-18 12:28:02
+  last_login_at: 2022-01-18 12:28:02
+  current_login_ip: MyString
+  last_login_ip: MyString
+  active: false
+  approved: false
+  confirmed: false
