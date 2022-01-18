@@ -1,4 +1,5 @@
-class PagesController < ApplicationController
+# Landing pages controller
+class PagesController < Panel::ApplicationController
   def index(); end
 
   def about(); end
