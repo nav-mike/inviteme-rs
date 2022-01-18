@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/signin', to: 'panel/user_sessions#new'
 
   namespace :panel do
+    get '/', to: 'pages#index'
     resource :user_sessions, only: %i[create destroy], as: :sessions
   end
 
