@@ -8,12 +8,17 @@
         <%= f.label :email, class: 'uppercase my-1' %>
         <%= f.input_field :email, placeholder: 'Email address', class: 'rounded-md p-2' %>
       </div>
-      <div class="flex flex-col w-full mt-3 mb-5 text-slate-400">
+      <div class="flex flex-col w-full mt-3 mb-5 text-slate-400" data-controller="password">
         <div class="my-1 flex justify-between">
           <%= f.label :password, class: 'uppercase' %>
           <%= link_to 'Forgot password?', '/', class: 'text-xs self-end hover:underline hover:text-blue-700' %>
         </div>
-        <%= f.input_field :password, placeholder: 'Password', class: 'rounded-md p-2' %>
+        <div class="flex border rounded-md">
+          <%= f.input_field :password, placeholder: 'Password', class: 'grow-2 border-none py-2 rounded-l-md pl-2 focus:outline-none', 'data-password-target': 'input' %>
+          <%= button_tag '', type: 'button', class: 'pr-2 bg-white rounded-r-md', 'data-action': 'click->password#togglePassword' do %>
+            <%= fa_icon 'eye-slash', 'data-password-target': 'icon' %>
+          <% end %>
+        </div>
       </div>
       <%= f.submit 'Login', class: 'w-full bg-blue-700 text-white p-3 rounded-xl cursor-pointer' %>
     <% end %>

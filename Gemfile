@@ -33,6 +33,7 @@ gem "redis", "~> 4.0"
 gem 'jsbundling-rails'
 gem 'cssbundling-rails'
 gem 'simple_form'
+gem "font-awesome-rails"
 
 # authentication
 gem "action_policy"
