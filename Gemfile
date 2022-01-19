@@ -89,6 +89,8 @@ group :development do
   gem 'guard-livereload'
 
   gem 'brakeman'
+
+  gem 'lefthook'
 end
 
 group :test do
