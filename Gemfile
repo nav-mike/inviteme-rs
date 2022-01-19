@@ -54,6 +54,8 @@ gem 'meta-tags'
 
 gem "paranoia", "~> 2.2"
 
+gem 'draper'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

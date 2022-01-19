@@ -53,6 +53,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (7.0.1)
       activesupport (= 7.0.1)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (7.0.1)
       activemodel (= 7.0.1)
       activesupport (= 7.0.1)
@@ -112,6 +116,13 @@ GEM
     dox (2.1.0)
       activesupport (>= 4.0)
       rspec-core
+    draper (4.0.2)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
+      ruby2_keywords
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
@@ -275,6 +286,7 @@ GEM
       rspec-support (~> 3.10.0)
     rspec-support (3.10.3)
     ruby-next-core (0.14.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     scrypt (3.0.7)
       ffi-compiler (>= 1.0, < 2.0)
@@ -339,6 +351,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dox
+  draper
   font-awesome-rails
   fx
   guard-livereload
