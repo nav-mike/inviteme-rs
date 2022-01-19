@@ -95,7 +95,9 @@ group :development do
   gem 'guard-livereload'
 
   gem 'brakeman'
-
+  gem 'rubocop', '~> 1.25', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-performance', require: false
   gem 'lefthook'
 end
 

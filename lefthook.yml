@@ -38,3 +38,7 @@ pre-commit:
   commands:
     audit:
       run: brakeman --no-pager
+    rubocop:
+      files: git diff --name-only --staged
+      glob: "*.rb"
+      run: rubocop --force-exclusion {files}

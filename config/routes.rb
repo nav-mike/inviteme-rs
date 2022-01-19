@@ -8,11 +8,11 @@ Rails.application.routes.draw do
     resource :user_sessions, only: %i[create destroy], as: :sessions
   end
 
-  scope :admin do
-  end
-
-  scope :api do
-  end
+  # scope :admin do
+  # end
+  #
+  # scope :api do
+  # end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

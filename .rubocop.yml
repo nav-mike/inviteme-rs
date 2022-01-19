@@ -1,0 +1,12 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+
+Rails/CreateTableWithTimestamps:
+  Exclude:
+    - db/migrate/20220119071331_rolify_create_roles.rb
