@@ -46,6 +46,10 @@ gem "strong_migrations"
 
 gem 'mailgun-ruby', '~>1.2.5'
 
+# db logs
+gem 'fx'
+gem "logidze", "~> 1.1"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
