@@ -87,6 +87,8 @@ group :development do
   gem "binding_of_caller"
   gem "rack-livereload"
   gem 'guard-livereload'
+
+  gem 'brakeman'
 end
 
 group :test do

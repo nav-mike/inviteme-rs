@@ -1,8 +1,10 @@
+# User model for auth process
 class User < ApplicationRecord
   rolify strict: true
   acts_as_authentic { _1.crypto_provider = ::Authlogic::CryptoProviders::SCrypt }
 
-  validates :email, format: { with: /@/, message: 'should look like an email address.' },
+  validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i,
+                              message: 'should look like an email address.' },
                     length: { maximum: 100 },
                     uniqueness: { case_sensitive: false, if: :will_save_change_to_email? }
   validates :password, confirmation: { if: :require_password? },
@@ -12,6 +14,6 @@ class User < ApplicationRecord
   after_create :assign_default_role
 
   def assign_default_role
-    self.add_role(:user)
+    add_role(:user)
   end
 end
