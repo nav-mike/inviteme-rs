@@ -2,7 +2,7 @@
 module MailgunClient
   class << self
     def client
-      @client ||= Mailgun::Client.new(ENV['MAILGUN_API_KEY'])
+      @client ||= Mailgun::Client.new(Rails.application.credentials.mailgun_api_key)
     end
   end
 end
