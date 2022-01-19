@@ -50,6 +50,8 @@ gem 'mailgun-ruby', '~>1.2.5'
 gem 'fx'
 gem "logidze", "~> 1.1"
 
+gem 'meta-tags'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

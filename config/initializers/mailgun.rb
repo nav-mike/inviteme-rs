@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Mailgun client config
 module MailgunClient
   class << self
