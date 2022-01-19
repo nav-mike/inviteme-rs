@@ -109,6 +109,9 @@ GEM
     digest (3.1.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dox (2.1.0)
+      activesupport (>= 4.0)
+      rspec-core
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
@@ -264,6 +267,9 @@ GEM
       netrc (~> 0.8)
     rexml (3.2.5)
     rolify (6.0.0)
+    rspec-core (3.10.1)
+      rspec-support (~> 3.10.0)
+    rspec-support (3.10.3)
     ruby-next-core (0.14.0)
     rubyzip (2.3.2)
     scrypt (3.0.7)
@@ -328,6 +334,7 @@ DEPENDENCIES
   chartkick
   cssbundling-rails
   debug
+  dox
   font-awesome-rails
   fx
   guard-livereload
