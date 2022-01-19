@@ -10,3 +10,6 @@ AllCops:
 Rails/CreateTableWithTimestamps:
   Exclude:
     - db/migrate/20220119071331_rolify_create_roles.rb
+
+Style/Documentation:
+  Enabled: false

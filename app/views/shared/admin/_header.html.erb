@@ -1,0 +1,10 @@
+<div class="flex divide-x divide-slate-400">
+  <div class="flex flex-1 content-between px-5 items-center">
+    <h1 class="flex-1 text-xl font-medium"><%= content_for?(:title) ? content_for(:title) : 'Default title' %></h1>
+    <%= fa_icon 'bell', class: 'text-slate-400' %>
+  </div>
+  <div class="flex items-center pl-4">
+    <span class="pr-4"><%= @header_user.full_name %></span>
+    <%= image_tag 'https://avatars.githubusercontent.com/u/2811491?v=4', size: '44' , class: 'rounded-3xl' %>
+  </div>
+</div>
