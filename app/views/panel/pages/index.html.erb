@@ -1,6 +1,11 @@
-<div class="flex">
+<div class="flex" data-controller="navigation"
+     data-action="turbo:before-fetch-request@document->navigation#displayLoading
+                  turbo:before-fetch-request@document->navigation#displayContent">
   <%= render 'shared/admin_navbar' %>
-  <div>
+  <%= turbo_frame_tag :pages, class: 'container', 'data-navigation-target': 'content' do %>
     <h1>Overview</h1>
+  <% end %>
+  <div class="hidden flex justify-center" data-navigation-target="loading">
+    <%= image_tag 'loading.gif', size: '200' %>
   </div>
 </div>

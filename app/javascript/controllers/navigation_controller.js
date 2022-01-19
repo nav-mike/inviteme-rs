@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = ['content', 'loading'];
 
   displayLoading(event) {
-    console.log('event.target');
     this.loadingTarget.classList.remove('hidden');
     this.contentTarget.classList.add('hidden');
   }

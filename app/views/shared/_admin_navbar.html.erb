@@ -1,22 +1,34 @@
-<div class="flex flex-col bg-slate-800 h-screen">
-  <ul>
-    <li>
-      <%= link_to 'Overview', '/' %>
-    </li>
-    <li>
-      <%= link_to 'Campaigns', '/' %>
-    </li>
-    <li>
-      <%= link_to 'Integrations', '/' %>
-    </li>
-    <li>
-      <%= link_to 'Documentation', '/' %>
-    </li>
-    <li>
-      <hr />
-    </li>
-    <li>
-      <%= link_to 'Settings', '/' %>
-    </li>
-  </ul>
+<div class="flex flex-col bg-slate-800 h-screen text-slate-500">
+  <%= turbo_frame_tag :navbar do %>
+    <ul>
+      <li class="flex hover:bg-slate-900 hover:text-slate-300">
+        <%= link_to panel_path, class: 'w-full py-3 px-5', 'data-turbo-frame': 'pages' do %>
+          <%= fa_icon 'pie-chart' %> Overview
+        <% end %>
+      </li>
+      <li class="flex hover:bg-slate-900 hover:text-slate-300">
+        <%= link_to panel_campaigns_path, class: 'w-full py-3 px-5', 'data-turbo-frame': 'pages' do %>
+          <%= fa_icon 'globe' %> Campaigns
+        <% end %>
+      </li>
+      <li class="flex hover:bg-slate-900 hover:text-slate-300">
+        <%= link_to panel_integrations_path, class: 'w-full py-3 px-5', 'data-turbo-frame': 'pages' do %>
+          <%= fa_icon 'plug' %> Integrations
+        <% end %>
+      </li>
+      <li class="flex hover:bg-slate-900 hover:text-slate-300">
+        <%= link_to panel_documentation_path, class: 'w-full py-3 px-5', 'data-turbo-frame': 'pages' do %>
+          <%= fa_icon 'book' %> Documentation
+        <% end %>
+      </li>
+      <li class="py-3 px-5">
+        <hr />
+      </li>
+      <li class="flex hover:bg-slate-900 hover:text-slate-300">
+        <%= link_to panel_settings_path, class: 'w-full py-3 px-5', 'data-turbo-frame': 'pages' do %>
+          <%= fa_icon 'cog' %> Settings
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
 </div>
