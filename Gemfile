@@ -31,6 +31,7 @@ gem "jbuilder"
 gem "redis", "~> 4.0"
 
 gem 'jsbundling-rails'
+gem "chartkick"
 gem 'cssbundling-rails'
 gem 'simple_form'
 gem "font-awesome-rails"
