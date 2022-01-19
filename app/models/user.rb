@@ -2,6 +2,7 @@
 class User < ApplicationRecord
   rolify strict: true
   acts_as_authentic { _1.crypto_provider = ::Authlogic::CryptoProviders::SCrypt }
+  acts_as_paranoid
 
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i,
                               message: 'should look like an email address.' },
