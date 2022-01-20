@@ -3,6 +3,7 @@ class Panel::PagesController < Panel::ApplicationController
   end
 
   def campaigns
+    @new_campaign = Campaign.new
   end
 
   def integrations
