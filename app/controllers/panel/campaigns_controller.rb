@@ -1,5 +1,9 @@
 module Panel
   class CampaignsController < Panel::ApplicationController
+    def index
+      @new_campaign = Campaign.new
+    end
+
     def create
       @campaign = Campaign.new(campaign_params)
       if @campaign.save

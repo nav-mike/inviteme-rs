@@ -5,13 +5,12 @@ Rails.application.routes.draw do
 
   namespace :panel do
     get '/', to: 'pages#index'
-    get '/campaigns', to: 'pages#campaigns', as: :index_campaigns
     get '/integrations', to: 'pages#integrations', as: :integrations
     get '/documentation', to: 'pages#documentation', as: :documentation
     get '/settings', to: 'pages#settings', as: :settings
 
     resource :user_sessions, only: %i[create destroy], as: :sessions
-    resource :campaigns
+    resources :campaigns
   end
 
   # scope :admin do
