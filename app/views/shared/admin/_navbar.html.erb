@@ -1,24 +1,23 @@
 <div class="flex flex-col bg-slate-800 h-screen text-slate-500 w-1/6">
   <p class="py-7 px-5 font-bold text-xl">Dashboard</p>
-  <%= turbo_frame_tag :navbar do %>
     <ul>
       <li class="flex hover:bg-slate-900 hover:text-slate-300">
-        <%= link_to panel_path, class: 'w-full py-3 px-5', 'data-turbo-frame': 'pages' do %>
+        <%= link_to panel_path, class: 'w-full py-3 px-5' do %>
           <%= fa_icon 'pie-chart' %> Overview
         <% end %>
       </li>
       <li class="flex hover:bg-slate-900 hover:text-slate-300">
-        <%= link_to panel_index_campaigns_path, class: 'w-full py-3 px-5', 'data-turbo-frame': 'pages' do %>
+        <%= link_to panel_index_campaigns_path, class: 'w-full py-3 px-5' do %>
           <%= fa_icon 'globe' %> Campaigns
         <% end %>
       </li>
       <li class="flex hover:bg-slate-900 hover:text-slate-300">
-        <%= link_to panel_integrations_path, class: 'w-full py-3 px-5', 'data-turbo-frame': 'pages' do %>
+        <%= link_to panel_integrations_path, class: 'w-full py-3 px-5' do %>
           <%= fa_icon 'plug' %> Integrations
         <% end %>
       </li>
       <li class="flex hover:bg-slate-900 hover:text-slate-300">
-        <%= link_to panel_documentation_path, class: 'w-full py-3 px-5', 'data-turbo-frame': 'pages' do %>
+        <%= link_to panel_documentation_path, class: 'w-full py-3 px-5' do %>
           <%= fa_icon 'book' %> Documentation
         <% end %>
       </li>
@@ -26,10 +25,9 @@
         <hr />
       </li>
       <li class="flex hover:bg-slate-900 hover:text-slate-300">
-        <%= link_to panel_settings_path, class: 'w-full py-3 px-5', 'data-turbo-frame': 'pages' do %>
+        <%= link_to panel_settings_path, class: 'w-full py-3 px-5' do %>
           <%= fa_icon 'cog' %> Settings
         <% end %>
       </li>
     </ul>
-  <% end %>
 </div>

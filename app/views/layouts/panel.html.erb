@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inviteme</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- The original sprockets one -->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <!-- The tailwind -->
+    <%= stylesheet_link_tag "application.tailwind" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="flex">
+      <%= render 'shared/admin/navbar' %>
+      <div class="bg-slate-200 w-full p-5">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

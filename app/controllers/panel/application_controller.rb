@@ -5,6 +5,8 @@ module Panel
 
     before_action :define_header_user_data
 
+    layout 'panel'
+
     private
 
     def define_header_user_data
