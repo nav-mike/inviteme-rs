@@ -35,6 +35,7 @@ gem "chartkick"
 gem 'cssbundling-rails'
 gem 'simple_form'
 gem "font-awesome-rails"
+gem 'kaminari'
 
 # authentication
 gem "action_policy"

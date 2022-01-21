@@ -24,3 +24,7 @@ body {
 form.no-stars abbr {
   display: none;
 }
+
+html, body {
+  height: 100%;
+}

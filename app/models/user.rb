@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
 
+  has_many :campaigns, dependent: :destroy
+
   def assign_default_role
     add_role(:user)
   end

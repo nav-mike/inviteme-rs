@@ -11,4 +11,29 @@
     <%= f.submit 'Create' %>
     <%= button_tag 'Reset', type: 'reset' %>
   <% end %>
+
+  <div class="m-10 border bg-white border-slate-300 rounded-md">
+    <h2 class="p-5 text-2xl font-medium">All campaigns</h2>
+    <table class="w-full">
+      <thead class="text-left text-slate-400">
+      <tr class="border-b-2">
+        <th class="p-5">Name</th>
+        <th class="p-5">Amount</th>
+        <th class="p-5">Referrals</th>
+        <th class="p-5">Promoters</th>
+        <th class="p-5">Last referral</th>
+        <th class="p-5">Last promoter</th>
+        <th class="p-5"></th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @campaigns.each do |campaign| %>
+          <%= render 'panel/campaigns/campaign', campaign: campaign %>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="flex justify-center p-3">
+    <%= paginate @campaigns %>
+    </div>
+  </div>
 </div>
