@@ -15,9 +15,15 @@ Rails.application.routes.draw do
 
   # scope :admin do
   # end
-  #
-  # scope :api do
-  # end
+
+  namespace :api do
+    resources :campaigns do
+      collection do
+        get :uniq_token
+      end
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
