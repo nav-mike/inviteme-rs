@@ -24,7 +24,9 @@ ActiveRecord::Schema.define(version: 2022_01_21_133206) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.jsonb "log_data"
+    t.index ["owner_id", "name"], name: "index_campaigns_on_owner_id_and_name", unique: true
     t.index ["owner_id"], name: "index_campaigns_on_owner_id"
+    t.index ["token"], name: "index_campaigns_on_token", unique: true
   end
 
   create_table "roles", force: :cascade do |t|

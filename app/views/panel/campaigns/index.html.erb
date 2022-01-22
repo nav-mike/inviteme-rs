@@ -1,16 +1,40 @@
 <div class="bg-slate-200 w-full p-5">
   <%- title 'Campaigns' %>
   <%= render 'shared/admin/header' %>
-  <%= simple_form_for @new_campaign, as: :campaign, method: :post, url: :panel_campaigns do |f| %>
-    <%= f.label :name %>
-    <%= f.input_field :name, placeholder: 'Enter the campaign name' %>
-    <%= f.label :token %>
-    <%= f.input_field :token %>
-    <%= f.label :amount %>
-    <%= f.input_field :amount %>
-    <%= f.submit 'Create' %>
-    <%= button_tag 'Reset', type: 'reset' %>
-  <% end %>
+  <div class="m-10 bg-white rounded-md">
+    <%= simple_form_for @new_campaign, as: :campaign, method: :post, url: :panel_campaigns, html: { class: 'flex p-3 flex-col no-stars' } do |f| %>
+      <div class="flex justify-between" data-controller="campaign-token">
+        <div class="flex flex-col flex-1 m-1">
+        <%= f.label :name %>
+        <%= f.input_field :name, placeholder: 'Enter the campaign name',
+                          class: 'rounded-md p-2 border-2', 'data-action': 'change->campaign-token#touchName' %>
+        </div>
+        <div class="flex flex-col flex-1 m-1">
+        <%= f.label :token %>
+        <div class="flex border-2 rounded-md p-2">
+          <%= f.input_field :token, class: 'grow-2 border-none rounded-l-md bg-white', disabled: true,
+                            'data-campaign-token-target': 'token' %>
+          <%= button_tag '', type: 'button', class: 'bg-white rounded-r-md text-slate-300 hover:text-slate-700',
+                         title: 'Generate a uniq token', 'data-action': 'click->campaign-token#regenerateToken' do %>
+            <%= fa_icon 'refresh' %>
+          <% end %>
+          <%= button_tag '', type: 'button', class: 'ml-2 bg-white rounded-r-md text-slate-300 hover:text-slate-700',
+                         title: 'Copy to clipboard', 'data-action': 'click->campaign-token#copyToClipboard' do %>
+            <%= fa_icon 'files-o' %>
+          <% end %>
+      </div>
+        </div>
+        <div class="flex flex-col m-1">
+        <%= f.label :amount %>
+        <%= f.input_field :amount, class: 'rounded-md p-2 border-2' %>
+        </div>
+      </div>
+      <div class="self-end">
+      <%= f.submit 'Create', class: 'hover:cursor-pointer' %>
+      <%= button_tag 'Reset', type: 'reset' %>
+      </div>
+    <% end %>
+  </div>
 
   <div class="m-10 border bg-white border-slate-300 rounded-md">
     <h2 class="p-5 text-2xl font-medium">All campaigns</h2>

@@ -9,5 +9,7 @@ class CreateCampaigns < ActiveRecord::Migration[7.0]
       t.timestamps
     end
     add_index :campaigns, :owner_id
+    add_index :campaigns, :token, unique: true
+    add_index :campaigns, %i[owner_id name], unique: true
   end
 end
