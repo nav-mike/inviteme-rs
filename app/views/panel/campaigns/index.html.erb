@@ -20,7 +20,7 @@
           <% end %>
           <%= button_tag '', type: 'button', class: 'ml-2 bg-white rounded-r-md text-slate-300 hover:text-slate-700',
                          title: 'Copy to clipboard', 'data-action': 'click->campaign-token#copyToClipboard' do %>
-            <%= fa_icon 'files-o' %>
+            <%= fa_icon 'files-o', 'data-campaign-token-target': 'copyIcon' %>
           <% end %>
       </div>
         </div>

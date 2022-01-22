@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ 'token' ]
+  static targets = [ 'token', 'copyIcon' ]
 
   code = null
   touched = 0
@@ -23,6 +23,7 @@ export default class extends Controller {
       used = data.used;
     } while (used != 0)
     this.code = token;
+    this.updateCopyIcon(false);
   }
 
   async touchName() {
@@ -41,6 +42,17 @@ export default class extends Controller {
     event.preventDefault();
     if (this.code) {
       navigator.clipboard.writeText(this.code);
+      this.updateCopyIcon(true);
+    }
+  }
+
+  updateCopyIcon(copied) {
+    if (copied) {
+      this.copyIconTarget.classList.add('fa-check', 'text-green-600')
+      this.copyIconTarget.classList.remove('fa-files-o')
+    } else {
+      this.copyIconTarget.classList.remove('fa-check', 'text-green-600')
+      this.copyIconTarget.classList.add('fa-files-o')
     }
   }
 }
