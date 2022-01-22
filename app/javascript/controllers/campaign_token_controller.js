@@ -6,23 +6,21 @@ export default class extends Controller {
   code = null
   touched = 0
 
+  async getToken() {
+    const response = await fetch('/api/campaigns/generate_token', {
+      method: 'GET',
+      headers: {
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+    })
+    const data = await response.json();
+    this.code = data.token;
+  }
+
   async generateUniqCode() {
-    let used;
-    let token;
-    do {
-      token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-      const result = await fetch(`/api/campaigns/uniq_token?token=${token}`, {
-        method: 'GET',
-        headers: {
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-      })
-      const data = await result.json()
-      used = data.used;
-    } while (used != 0)
-    this.code = token;
+   await this.getToken();
     this.updateCopyIcon(false);
   }
 

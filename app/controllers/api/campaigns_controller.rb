@@ -1,7 +1,12 @@
 module Api
   class CampaignsController < Panel::ApplicationController
-    def uniq_token
-      render json: { used: Campaign.where(token: params[:token]).size }
+    def generate_token
+      token = nil
+      loop do
+        token = SecureRandom.uuid
+        break if Campaign.where(token: token).empty?
+      end
+      render json: { token: token }
     end
   end
 end

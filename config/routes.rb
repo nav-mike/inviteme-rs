@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :campaigns do
       collection do
-        get :uniq_token
+        get :generate_token
       end
     end
   end

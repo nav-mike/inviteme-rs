@@ -1,7 +1,7 @@
 module Panel
   class CampaignsController < Panel::ApplicationController
     def index
-      @new_campaign = Campaign.new
+      @new_campaign = Campaign.new(amount: 0.0)
       @campaigns = Campaign.where(owner: current_user).order(created_at: :asc).page(params[:page])
     end
 

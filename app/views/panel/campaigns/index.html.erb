@@ -10,28 +10,31 @@
                           class: 'rounded-md p-2 border-2', 'data-action': 'change->campaign-token#touchName' %>
         </div>
         <div class="flex flex-col flex-1 m-1">
-        <%= f.label :token %>
-        <div class="flex border-2 rounded-md p-2">
-          <%= f.input_field :token, class: 'grow-2 border-none rounded-l-md bg-white', disabled: true,
-                            'data-campaign-token-target': 'token' %>
-          <%= button_tag '', type: 'button', class: 'bg-white rounded-r-md text-slate-300 hover:text-slate-700',
-                         title: 'Generate a uniq token', 'data-action': 'click->campaign-token#regenerateToken' do %>
-            <%= fa_icon 'refresh' %>
-          <% end %>
-          <%= button_tag '', type: 'button', class: 'ml-2 bg-white rounded-r-md text-slate-300 hover:text-slate-700',
-                         title: 'Copy to clipboard', 'data-action': 'click->campaign-token#copyToClipboard' do %>
-            <%= fa_icon 'files-o', 'data-campaign-token-target': 'copyIcon' %>
-          <% end %>
-      </div>
+          <%= f.label :token %>
+          <div class="flex border-2 rounded-md p-2">
+            <%= f.input_field :token, class: 'grow-2 border-none rounded-l-md bg-white text-slate-400', disabled: true,
+                              'data-campaign-token-target': 'token' %>
+            <%= button_tag '', type: 'button', class: 'bg-white rounded-r-md text-slate-300 hover:text-slate-700',
+                           title: 'Generate a uniq token', 'data-action': 'click->campaign-token#regenerateToken' do %>
+              <%= fa_icon 'refresh' %>
+            <% end %>
+            <%= button_tag '', type: 'button', class: 'ml-2 bg-white rounded-r-md text-slate-300 hover:text-slate-700',
+                           title: 'Copy to clipboard', 'data-action': 'click->campaign-token#copyToClipboard' do %>
+              <%= fa_icon 'files-o', 'data-campaign-token-target': 'copyIcon' %>
+            <% end %>
+          </div>
         </div>
-        <div class="flex flex-col m-1">
+        <div class="flex flex-col m-1 w-25">
         <%= f.label :amount %>
-        <%= f.input_field :amount, class: 'rounded-md p-2 border-2' %>
+          <div class="rounded-md p-2 border-2">
+            <%= fa_icon 'usd', class: 'text-slate-400' %>
+            <%= f.input_field :amount, class: 'grow-2 focus:outline-none text-right w-20', step: '0.01' %>
+          </div>
         </div>
       </div>
       <div class="self-end">
-      <%= f.submit 'Create', class: 'hover:cursor-pointer' %>
-      <%= button_tag 'Reset', type: 'reset' %>
+      <%= f.submit 'Create', class: 'hover:cursor-pointer border-1 rounded-md bg-lime-600 p-1 text-white hover:bg-lime-800' %>
+      <%= button_tag 'Reset', type: 'reset', class: 'bg-white border-1 rounded p-1 hover:bg-slate-300' %>
       </div>
     <% end %>
   </div>
