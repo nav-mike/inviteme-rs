@@ -12,8 +12,8 @@
         <div class="flex flex-col flex-1 m-1">
           <%= f.label :token %>
           <div class="flex border-2 rounded-md p-2">
-            <%= f.input_field :token, class: 'grow-2 border-none rounded-l-md bg-white text-slate-400', disabled: true,
-                              'data-campaign-token-target': 'token' %>
+            <%= f.input_field :token, class: 'grow-2 border-none rounded-l-md bg-white text-slate-400 focus:outline-none',
+                              readonly: true, 'data-campaign-token-target': 'token' %>
             <%= button_tag '', type: 'button', class: 'bg-white rounded-r-md text-slate-300 hover:text-slate-700',
                            title: 'Generate a uniq token', 'data-action': 'click->campaign-token#regenerateToken' do %>
               <%= fa_icon 'refresh' %>
