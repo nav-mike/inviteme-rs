@@ -30,8 +30,11 @@
       </div>
     </div>
     <div class="self-end">
-      <%= f.submit 'Create', class: 'hover:cursor-pointer border-1 rounded-md bg-lime-600 p-1 text-white hover:bg-lime-800' %>
+      <%= f.submit 'Save', class: 'hover:cursor-pointer border-1 rounded-md bg-lime-600 p-1 text-white hover:bg-lime-800' %>
       <%= button_tag 'Reset', type: 'reset', class: 'bg-white border-1 rounded p-1 hover:bg-slate-300' %>
+      <% if params[:action] == 'edit' %>
+        <%= link_to 'Cancel', panel_campaigns_path, class: 'bg-white border-1 rounded p-2 bg-blue-100 hover:bg-blue-300' %>
+      <% end %>
     </div>
   <% end %>
   <% errors ||= nil %>
