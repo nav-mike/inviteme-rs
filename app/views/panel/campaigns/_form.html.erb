@@ -1,0 +1,52 @@
+<div class="m-10 bg-white rounded-md">
+  <%= simple_form_for campaign, as: :campaign, method: :post, url: :panel_campaigns, html: { class: 'flex p-3 flex-col no-stars' } do |f| %>
+    <div class="flex justify-between" data-controller="campaign-token">
+      <div class="flex flex-col flex-1 m-1">
+        <%= f.label :name %>
+        <%= f.input_field :name, placeholder: 'Enter the campaign name',
+                          class: 'rounded-md p-2 border-2', 'data-action': 'change->campaign-token#touchName' %>
+      </div>
+      <div class="flex flex-col flex-1 m-1">
+        <%= f.label :token %>
+        <div class="flex border-2 rounded-md p-2">
+          <%= f.input_field :token, class: 'grow-2 border-none rounded-l-md bg-white text-slate-400 focus:outline-none',
+                            readonly: true, 'data-campaign-token-target': 'token' %>
+          <%= button_tag '', type: 'button', class: 'bg-white rounded-r-md text-slate-300 hover:text-slate-700',
+                         title: 'Generate a uniq token', 'data-action': 'click->campaign-token#regenerateToken' do %>
+            <%= fa_icon 'refresh' %>
+          <% end %>
+          <%= button_tag '', type: 'button', class: 'ml-2 bg-white rounded-r-md text-slate-300 hover:text-slate-700',
+                         title: 'Copy to clipboard', 'data-action': 'click->campaign-token#copyToClipboard' do %>
+            <%= fa_icon 'files-o', 'data-campaign-token-target': 'copyIcon' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="flex flex-col m-1 w-25">
+        <%= f.label :amount %>
+        <div class="rounded-md p-2 border-2">
+          <%= fa_icon 'usd', class: 'text-slate-400' %>
+          <%= f.input_field :amount, class: 'grow-2 focus:outline-none text-right w-20', step: '0.01' %>
+        </div>
+      </div>
+    </div>
+    <div class="self-end">
+      <%= f.submit 'Create', class: 'hover:cursor-pointer border-1 rounded-md bg-lime-600 p-1 text-white hover:bg-lime-800' %>
+      <%= button_tag 'Reset', type: 'reset', class: 'bg-white border-1 rounded p-1 hover:bg-slate-300' %>
+    </div>
+  <% end %>
+  <% errors ||= nil %>
+  <% if errors %>
+    <div class="border-2 rounded-md p-2 border-red-700">
+      <% errors.filter { !%i[owner token].include?(_1) }.each do |field, messages| %>
+        <div>
+          <p><%= field %>:</p>
+          <ul class="ml-10">
+            <% messages.each do %>
+              <li><%= _1 %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

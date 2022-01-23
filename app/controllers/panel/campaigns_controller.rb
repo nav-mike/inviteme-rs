@@ -10,7 +10,7 @@ module Panel
       if @campaign.save
         redirect_to panel_campaigns_path
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
