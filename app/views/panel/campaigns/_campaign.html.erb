@@ -6,5 +6,7 @@
   <td class="p-5">21.05.2021</td>
   <td class="p-5">22.01.2022</td>
   <td class="p-5"><%= link_to 'Edit', panel_campaign_path(campaign) %></td>
-  <td class="p-5"><%= link_to 'Delete', panel_campaign_path(campaign), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></td>
+  <td class="p-5"><%= link_to 'Delete', panel_campaign_path(campaign),
+                              data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },
+                              class: 'hover:border-1 hover:text-white rounded-md p-1 hover:bg-red-800' %></td>
 </tr>

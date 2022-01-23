@@ -1,5 +1,7 @@
 module Panel
   class CampaignsController < Panel::ApplicationController
+    before_action :set_campaign, only: %i[destroy]
+
     def index
       @new_campaign = Campaign.new(amount: 0.0)
       @campaigns = Campaign.where(owner: current_user).order(created_at: :asc).page(params[:page])
@@ -14,10 +16,22 @@ module Panel
       end
     end
 
+    def destroy
+      if @campaign.destroy
+        redirect_to panel_campaigns_path
+      else
+        render :index, status: :unprocessable_entity
+      end
+    end
+
     private
 
     def campaign_params
       params.require(:campaign).permit(:name, :token, :amount)
+    end
+
+    def set_campaign
+      @campaign = Campaign.find(params[:id])
     end
   end
 end
