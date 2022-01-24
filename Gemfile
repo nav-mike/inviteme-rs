@@ -92,8 +92,6 @@ group :development do
 
   gem "better_errors"
   gem "binding_of_caller"
-  # gem "rack-livereload"
-  # gem 'guard-livereload'
 
   gem 'brakeman'
   gem 'rubocop', '~> 1.25', require: false
