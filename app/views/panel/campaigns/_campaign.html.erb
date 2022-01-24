@@ -1,5 +1,7 @@
 <tr class="hover:bg-slate-200 hover:cursor-pointer border-b-2">
-  <td class="p-5"><%= campaign.name %></td>
+  <td class="p-5">
+    <%= link_to campaign.name, panel_campaign_path(campaign) %>
+  </td>
   <td class="p-5">$<%= campaign.amount %></td>
   <td class="p-5">10</td>
   <td class="p-5">11</td>
