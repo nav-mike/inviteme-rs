@@ -3,8 +3,15 @@ module Panel
     before_action :set_campaign, only: %i[destroy edit show]
 
     def index
-      @new_campaign = Campaign.new(amount: 0.0)
-      @campaigns = Campaign.where(owner: current_user).order(created_at: :asc).page(params[:page])
+      respond_to do |format|
+        format.html do
+          @new_campaign = Campaign.new(amount: 0.0)
+          @campaigns = Campaign.where(owner: current_user).order(created_at: :asc).page(params[:page])
+        end
+        format.csv do
+          @campaigns = Campaign.where(owner: current_user).order(created_at: :asc)
+        end
+      end
     end
 
     def edit(); end
