@@ -1,6 +1,6 @@
 module Panel
   class CampaignsController < Panel::ApplicationController
-    before_action :set_campaign, only: %i[destroy edit]
+    before_action :set_campaign, only: %i[destroy edit show]
 
     def index
       @new_campaign = Campaign.new(amount: 0.0)
@@ -8,6 +8,10 @@ module Panel
     end
 
     def edit(); end
+
+    def show
+      @campaign = Panel::CampaignDecorator.decorate(set_campaign)
+    end
 
     def create
       @campaign = Campaign.new(campaign_params.merge(owner: current_user))

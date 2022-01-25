@@ -1,1 +1,97 @@
-<p>campaigns#show</p>
+<div class="bg-slate-200 w-full p-5">
+  <%- title "Campaign: #{@campaign.name}" %>
+  <%= render 'shared/admin/header' %>
+  <div class="flex p-5">
+    <%= link_to panel_campaigns_path, title: 'Back' do %>
+      <%= fa_icon 'long-arrow-left' %>
+    <% end %>
+    <p class="pl-5 text-slate-400 flex-1">$<%= @campaign.amount %> per referral</p>
+  </div>
+
+  <div class="flex flex-col">
+    <div class="flex flex-col items-center my-8">
+      <h3 class="text-lg">Amount of referrals per day</h3>
+      <%= line_chart @campaign.referrals_chart_data, ytitle: 'Amount of referrals per day', label: 'Referrals' %>
+    </div>
+
+    <div class="flex flex-col items-center my-8">
+      <h3 class="text-lg">Amount of promoters per day</h3>
+      <%= line_chart @campaign.promoters_chart_data, ytitle: 'Amount of promoters per day', colors: ['red'], label: 'Promoters' %>
+    </div>
+
+    <div class="border bg-white border-slate-300 rounded-md flex flex-col">
+      <h3 class="text-lg self-center pb-3 pt-5">All referrals</h3>
+      <table class="w-full">
+        <thead class="text-left text-slate-400">
+          <tr class="border-b-2">
+            <th class="p-5">Email</th>
+            <th class="p-5">Created At</th>
+            <th class="p-5">Reward status</th>
+            <th class="p-5">Price</th>
+            <th class="p-5">Promoter</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @campaign.referrals.each do |referral| %>
+            <tr class="hover:bg-slate-200 hover:cursor-pointer border-b-2">
+              <td class="p-5"><%= referral.email %></td>
+              <td class="p-5"><%= referral.created_at.to_s(:db) %></td>
+              <td class="p-5"><%= referral.reward_status %></td>
+              <td class="p-5"><%= referral.price %></td>
+              <td class="p-5">
+                <%= link_to referral.promoter, '/', class: 'hover:underline' %>
+              </td>
+              <td class="p-5">
+                <%= link_to button_label_by_status(referral.reward_status),
+                            button_url_by_status(referral.reward_status),
+                            class: 'hover:border-1 hover:text-white rounded-md p-1 hover:bg-blue-400' %>
+              </td>
+              <td class="p-5"><%= link_to 'Delete', '/',
+                                          class: 'hover:border-1 hover:text-white rounded-md p-1 hover:bg-red-800' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="border bg-white border-slate-300 rounded-md flex flex-col">
+      <h3 class="text-lg self-center pb-3 pt-5">All promoters</h3>
+      <table class="w-full">
+        <thead class="text-left text-slate-400">
+        <tr class="border-b-2">
+          <th class="p-5">Email</th>
+          <th class="p-5">Full name</th>
+          <th class="p-5">Total income</th>
+          <th class="p-5">Referrals</th>
+          <th class="p-5">Created At</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @campaign.promoters.each do |promoter| %>
+          <tr class="hover:bg-slate-200 hover:cursor-pointer border-b-2">
+            <td class="p-5">
+              <%= link_to promoter.email, '/', class: 'hover:underline' %>
+            </td>
+            <td class="p-5">
+              <%= link_to promoter.full_name, '/', class: 'hover:underline' %>
+            </td>
+            <td class="p-5"><%= promoter.total_income %></td>
+            <td class="p-5"><%= link_to promoter.referrals %></td>
+            <td class="p-5"><%= promoter.created_at.to_s(:db) %></td>
+            <td class="p-5">
+              <%= link_to 'Ban', '/',
+                          class: 'hover:border-1 hover:text-white rounded-md p-1 hover:bg-orange-400' %>
+            </td>
+            <td class="p-5"><%= link_to 'Delete', '/',
+                                        class: 'hover:border-1 hover:text-white rounded-md p-1 hover:bg-red-800' %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
