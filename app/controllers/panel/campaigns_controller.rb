@@ -10,6 +10,7 @@ module Panel
         end
         format.csv do
           @campaigns = Campaign.where(owner: current_user).order(created_at: :asc)
+          send_data Campaigns::ExportCsv.call(@campaigns), file_name: "campaigns-#{Date.today}.csv"
         end
       end
     end
