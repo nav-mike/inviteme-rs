@@ -19,8 +19,13 @@
       <%= line_chart @campaign.promoters_chart_data, ytitle: 'Amount of promoters per day', colors: ['red'], label: 'Promoters' %>
     </div>
 
-    <div class="border bg-white border-slate-300 rounded-md flex flex-col">
-      <h3 class="text-lg self-center pb-3 pt-5">All referrals</h3>
+    <div class="border bg-white border-slate-300 rounded-md flex flex-col mb-5">
+      <div class="flex items-center justify-between p-5">
+        <h3 class="text-lg self-center pb-3 pt-5">All referrals</h3>
+        <%= link_to panel_campaigns_path(format: :csv), title: 'Export as CSV', class: %w[pb-3 pt-5 hover:text-green-700] do %>
+          <%= fa_icon 'download' %>
+        <% end %>
+      </div>
       <table class="w-full">
         <thead class="text-left text-slate-400">
           <tr class="border-b-2">
@@ -57,7 +62,12 @@
     </div>
 
     <div class="border bg-white border-slate-300 rounded-md flex flex-col">
-      <h3 class="text-lg self-center pb-3 pt-5">All promoters</h3>
+      <div class="flex items-center justify-between p-5">
+        <h3 class="text-lg self-center pb-3 pt-5">All promoters</h3>
+        <%= link_to panel_campaigns_path(format: :csv), title: 'Export as CSV', class: %w[pb-3 pt-5 hover:text-green-700] do %>
+          <%= fa_icon 'download' %>
+        <% end %>
+      </div>
       <table class="w-full">
         <thead class="text-left text-slate-400">
         <tr class="border-b-2">
