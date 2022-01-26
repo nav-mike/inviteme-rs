@@ -25,7 +25,7 @@ Things you may want to cover:
 
 ## Roadmap
 
-1. Обновление campaign
+1. ~~Обновление campaign~~
 2. ~~Выделение текущего пункта в меню~~
 3. Выпилить из js fetch и использовать request.js
 4. Таблица промоутеров

@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { get } from '@rails/request.js'
 
 export default class extends Controller {
   static targets = [ 'token', 'copyIcon', 'name' ]
@@ -11,15 +12,10 @@ export default class extends Controller {
   }
 
   async getToken() {
-    const response = await fetch('/api/campaigns/generate_token', {
-      method: 'GET',
-      headers: {
-        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    })
-    const data = await response.json();
+    const response = await get('/api/campaigns/generate_token')
+    if (!response.ok) throw 'Unexpected server error'
+
+    const data = await response.json
     this.code = data.token;
   }
 

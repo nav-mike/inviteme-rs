@@ -34,6 +34,7 @@ gem 'jsbundling-rails'
 gem "chartkick"
 gem 'cssbundling-rails'
 gem 'simple_form'
+gem 'requestjs-rails'
 gem "font-awesome-rails"
 gem 'kaminari'
 
