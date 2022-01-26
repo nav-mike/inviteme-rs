@@ -1,10 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ 'token', 'copyIcon' ]
+  static targets = [ 'token', 'copyIcon', 'name' ]
 
   code = null
   touched = 0
+
+  connect() {
+    this.touched = this.nameTarget.value.length > 0 ? 1 : 0;
+  }
 
   async getToken() {
     const response = await fetch('/api/campaigns/generate_token', {

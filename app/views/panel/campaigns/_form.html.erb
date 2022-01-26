@@ -1,10 +1,11 @@
 <div class="m-10 bg-white rounded-md">
-  <%= simple_form_for campaign, as: :campaign, method: :post, url: :panel_campaigns, html: { class: 'flex p-3 flex-col no-stars' } do |f| %>
+  <%= simple_form_for campaign, as: :campaign, method: form_method(params), url: form_url(params), html: { class: 'flex p-3 flex-col no-stars' } do |f| %>
     <div class="flex justify-between" data-controller="campaign-token">
       <div class="flex flex-col flex-1 m-1">
         <%= f.label :name %>
         <%= f.input_field :name, placeholder: 'Enter the campaign name',
-                          class: 'rounded-md p-2 border-2', 'data-action': 'change->campaign-token#touchName' %>
+                          class: 'rounded-md p-2 border-2', 'data-action': 'change->campaign-token#touchName',
+                          'data-campaign-token-target': 'name' %>
       </div>
       <div class="flex flex-col flex-1 m-1">
         <%= f.label :token %>

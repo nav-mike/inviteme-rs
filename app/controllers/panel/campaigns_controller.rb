@@ -1,6 +1,6 @@
 module Panel
   class CampaignsController < Panel::ApplicationController
-    before_action :set_campaign, only: %i[destroy edit show]
+    before_action :set_campaign, only: %i[destroy edit update show]
 
     def index
       respond_to do |format|
@@ -39,6 +39,14 @@ module Panel
         redirect_to panel_campaigns_path
       else
         render :new, status: :unprocessable_entity
+      end
+    end
+
+    def update
+      if @campaign.update(campaign_params)
+        redirect_to panel_campaigns_path
+      else
+        render :edit, status: :unprocessable_entity
       end
     end
 
