@@ -18,7 +18,19 @@ module Panel
     def edit(); end
 
     def show
-      @campaign = Panel::CampaignDecorator.decorate(set_campaign)
+      respond_to do |format|
+        format.html { @campaign = Panel::CampaignDecorator.decorate(set_campaign) }
+        format.csv do
+          case params[:report]
+          in 'referrals'
+            referrals
+          in 'promoters'
+            promoters
+          else
+            raise ActionController::RoutingError.new('Not Found')
+          end
+        end
+      end
     end
 
     def create
@@ -39,6 +51,16 @@ module Panel
     end
 
     private
+
+    def referrals
+      send_data Referrals::ExportCsv.call(@campaign), file_name: "campaign-#{@campaign.id}-#{Date.today}-referrals.csv",
+                type: 'text/csv'
+    end
+
+    def promoters
+      send_data Promoters::ExportCsv.call(@campaign), file_name: "campaign-#{@campaign.id}-#{Date.today}-promoters.csv",
+                type: 'text/csv'
+    end
 
     def campaign_params
       params.require(:campaign).permit(:name, :token, :amount)

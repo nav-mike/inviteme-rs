@@ -22,7 +22,8 @@
     <div class="border bg-white border-slate-300 rounded-md flex flex-col mb-5">
       <div class="flex items-center justify-between p-5">
         <h3 class="text-lg self-center pb-3 pt-5">All referrals</h3>
-        <%= link_to panel_campaigns_path(format: :csv), title: 'Export as CSV', class: %w[pb-3 pt-5 hover:text-green-700] do %>
+        <%= link_to panel_campaign_path(@campaign, report: 'referrals', format: :csv), title: 'Export as CSV',
+                    class: %w[pb-3 pt-5 hover:text-green-700] do %>
           <%= fa_icon 'download' %>
         <% end %>
       </div>
@@ -64,7 +65,8 @@
     <div class="border bg-white border-slate-300 rounded-md flex flex-col">
       <div class="flex items-center justify-between p-5">
         <h3 class="text-lg self-center pb-3 pt-5">All promoters</h3>
-        <%= link_to panel_campaigns_path(format: :csv), title: 'Export as CSV', class: %w[pb-3 pt-5 hover:text-green-700] do %>
+        <%= link_to panel_campaign_path(@campaign, report: 'promoters', format: :csv), title: 'Export as CSV',
+                    class: %w[pb-3 pt-5 hover:text-green-700] do %>
           <%= fa_icon 'download' %>
         <% end %>
       </div>
