@@ -1,39 +1,39 @@
-import { Controller } from "@hotwired/stimulus"
-import { get } from '@rails/request.js'
+import { Controller } from "@hotwired/stimulus";
+import { get } from "@rails/request.js";
 
 export default class extends Controller {
-  static targets = [ 'token', 'copyIcon', 'name' ]
+  static targets = ["token", "copyIcon", "name"];
 
-  code = null
-  touched = 0
+  code = null;
+  touched = 0;
 
   connect() {
     this.touched = this.nameTarget.value.length > 0 ? 1 : 0;
   }
 
   async getToken() {
-    const response = await get('/api/campaigns/generate_token')
-    if (!response.ok) throw 'Unexpected server error'
+    const response = await get("/api/campaigns/generate_token");
+    if (!response.ok) throw "Unexpected server error";
 
-    const data = await response.json
+    const data = await response.json;
     this.code = data.token;
   }
 
   async generateUniqCode() {
-   await this.getToken();
+    await this.getToken();
     this.updateCopyIcon(false);
   }
 
   async touchName() {
-    this.touched += 1
+    this.touched += 1;
     if (this.touched === 1 && this.code === null) {
       await this.regenerateToken();
     }
   }
 
   async regenerateToken() {
-    await this.generateUniqCode()
-    this.tokenTarget.value = this.code
+    await this.generateUniqCode();
+    this.tokenTarget.value = this.code;
   }
 
   copyToClipboard(event) {
@@ -46,11 +46,11 @@ export default class extends Controller {
 
   updateCopyIcon(copied) {
     if (copied) {
-      this.copyIconTarget.classList.add('fa-check', 'text-green-600')
-      this.copyIconTarget.classList.remove('fa-files-o')
+      this.copyIconTarget.classList.add("fa-check", "text-green-600");
+      this.copyIconTarget.classList.remove("fa-files-o");
     } else {
-      this.copyIconTarget.classList.remove('fa-check', 'text-green-600')
-      this.copyIconTarget.classList.add('fa-files-o')
+      this.copyIconTarget.classList.remove("fa-check", "text-green-600");
+      this.copyIconTarget.classList.add("fa-files-o");
     }
   }
 }
