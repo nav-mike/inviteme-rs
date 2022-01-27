@@ -43,7 +43,7 @@
           <% @campaign.referrals.each do |referral| %>
             <tr class="hover:bg-slate-200 hover:cursor-pointer border-b-2">
               <td class="p-5"><%= referral.email %></td>
-              <td class="p-5"><%= referral.created_at.to_s(:db) %></td>
+              <td class="p-5"><%= referral.created_at.to_formatted_s(:db) %></td>
               <td class="p-5"><%= referral.reward_status %></td>
               <td class="p-5"><%= referral.price %></td>
               <td class="p-5">
@@ -93,7 +93,7 @@
             </td>
             <td class="p-5"><%= promoter.total_income %></td>
             <td class="p-5"><%= link_to promoter.referrals %></td>
-            <td class="p-5"><%= promoter.created_at.to_s(:db) %></td>
+            <td class="p-5"><%= promoter.created_at.to_formatted_s(:db) %></td>
             <td class="p-5">
               <%= link_to 'Ban', '/',
                           class: 'hover:border-1 hover:text-white rounded-md p-1 hover:bg-orange-400' %>
