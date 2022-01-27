@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_133206) do
+ActiveRecord::Schema.define(version: 2022_01_27_075021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(version: 2022_01_21_133206) do
     t.index ["owner_id", "name"], name: "index_campaigns_on_owner_id_and_name", unique: true
     t.index ["owner_id"], name: "index_campaigns_on_owner_id"
     t.index ["token"], name: "index_campaigns_on_token", unique: true
+  end
+
+  create_table "promoters", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "campaign_id", null: false
+    t.string "token", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "log_data"
+    t.index ["campaign_id", "email"], name: "index_promoters_on_campaign_id_and_email", unique: true
+    t.index ["campaign_id"], name: "index_promoters_on_campaign_id"
+    t.index ["token"], name: "index_promoters_on_token", unique: true
   end
 
   create_table "roles", force: :cascade do |t|
@@ -445,5 +459,8 @@ ActiveRecord::Schema.define(version: 2022_01_21_133206) do
 
   create_trigger :logidze_on_campaigns, sql_definition: <<-SQL
       CREATE TRIGGER logidze_on_campaigns BEFORE INSERT OR UPDATE ON public.campaigns FOR EACH ROW WHEN ((COALESCE(current_setting('logidze.disabled'::text, true), ''::text) <> 'on'::text)) EXECUTE FUNCTION logidze_logger('null', 'updated_at')
+  SQL
+  create_trigger :logidze_on_promoters, sql_definition: <<-SQL
+      CREATE TRIGGER logidze_on_promoters BEFORE INSERT OR UPDATE ON public.promoters FOR EACH ROW WHEN ((COALESCE(current_setting('logidze.disabled'::text, true), ''::text) <> 'on'::text)) EXECUTE FUNCTION logidze_logger('null', 'updated_at')
   SQL
 end
