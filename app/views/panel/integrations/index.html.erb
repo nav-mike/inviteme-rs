@@ -1,0 +1,65 @@
+<div class="bg-slate-200 w-full p-5">
+  <%- title 'Integrations' %>
+  <%= render 'shared/admin/header' %>
+  <div class="flex mt-10 w-full flex-col border-b-2 border-slate-300 rounded-tl-md" data-controller="tabs">
+    <div>
+      <ul class="flex">
+        <li class="flex p-5 border-r-2 border-l-2 border-t-2 border-slate-300 rounded-t-md bg-slate-100"
+            data-tabs-target="jsTab">
+          <a class="w-full h-full" href="#" data-action="click->tabs#showJs">JavaScript File</a>
+        </li>
+        <li class="flex p-5 border-b-2 border-slate-300" data-tabs-target="apiTab">
+          <a class="w-full h-full" href="#" data-action="click->tabs#showApi">API</a>
+        </li>
+        <li class="flex-1 border-b-2 border-slate-300"></li>
+      </ul>
+    </div>
+    <div class="p-5 border-r-2 border-l-2 border-slate-300 bg-slate-100">
+      <div data-tabs-target="js">
+        <h2 class="text-lg">JavaScript Integration</h2>
+        <p>In this approach you should to do:</p>
+        <ol class="list-decimal">
+          <li>
+            Create a campaign.
+          </li>
+          <li>
+            Define the target url on campaign creation form.
+          </li>
+          <li>
+            Copy our javascript file from the campaign page to your frontend project.
+          </li>
+          <li>
+            Generate personal link for each promoter of your application.
+          </li>
+        </ol>
+      </div>
+      <div class="hidden" data-tabs-target="api">
+        <h2 class="text-lg">API integration</h2>
+        <p>In this approach you should do:</p>
+        <ol class="list-decimal">
+          <li>
+            Create a campaign.
+          </li>
+          <li>
+            Use request POST /promoter to generate uniq promoter's token
+          </li>
+          <li>
+            Use request POST /referral to create new referral when you need it.
+          </li>
+          <li>
+            Use request GET /referrals to get all referrals with reward statuses
+          </li>
+          <li>
+            Use request PATCH /referrals/:id/approve to approve reward
+          </li>
+          <li>
+            Use request PATCH /referrals/:id/pay to make reward as payed
+          </li>
+          <li>
+            Use request PATCH /referrals/:id/reject to mark the reward as banned
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>

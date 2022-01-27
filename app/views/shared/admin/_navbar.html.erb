@@ -11,8 +11,8 @@
           <%= fa_icon 'globe' %> Campaigns
         <% end %>
       </li>
-      <li class="flex hover:bg-slate-900 hover:text-slate-300">
-        <%= link_to panel_integrations_path, class: 'w-full py-3 px-5' do %>
+      <li class="flex<%= active_navbar_link_classes(integrations?(params)) %>">
+        <%= link_to panel_integrations_index_path, class: 'w-full py-3 px-5' do %>
           <%= fa_icon 'plug' %> Integrations
         <% end %>
       </li>
