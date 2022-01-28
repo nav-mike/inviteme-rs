@@ -42,3 +42,7 @@ pre-commit:
       files: git diff --name-only --staged
       glob: "*.rb"
       run: rubocop --force-exclusion {files}
+    prettier:
+      files: git diff --name-only --staged
+      glob: "*.js"
+      run: node_modules/.bin/prettier --write {files}
