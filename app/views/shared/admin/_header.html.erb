@@ -3,8 +3,29 @@
     <h1 class="flex-1 text-xl font-medium"><%= content_for?(:title) ? content_for(:title) : 'Default title' %></h1>
     <%= fa_icon 'bell', class: 'text-slate-400' %>
   </div>
-  <div class="flex items-center pl-4">
+  <div class="flex items-center pl-4" data-controller="menu">
     <span class="pr-4"><%= @header_user.full_name %></span>
-    <%= image_tag 'https://avatars.githubusercontent.com/u/2811491?v=4', size: '44' , class: 'rounded-3xl' %>
+    <%= link_to '#', 'data-action': 'click->menu#toggle', id: 'menuLink' do %>
+      <%= image_tag 'https://avatars.githubusercontent.com/u/2811491?v=4', size: '44' , class: 'rounded-3xl',
+                    id: 'menuImg' %>
+    <% end %>
+    <div class="absolute hidden right-9 bg-slate-100 custom-top-90 p-3 rounded-md border-slate-300 border-2"
+         data-menu-target="menuDiv" >
+      <ul>
+        <li class="hover:bg-slate-200 hover:text-slate-900 rounded py-2">
+          <%= link_to '/', class: 'py-3 px-5' do %>
+            <%= fa_icon 'user' %> Profile
+          <% end %>
+        </li>
+        <li class="py-2">
+          <hr />
+        </li>
+        <li class="hover:bg-slate-200 hover:text-slate-900 rounded py-2">
+          <%= link_to '/', class: 'py-3 px-5' do %>
+            <%= fa_icon 'sign-out' %> Log Out
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
