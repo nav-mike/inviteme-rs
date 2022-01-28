@@ -45,4 +45,4 @@ pre-commit:
     prettier:
       files: git diff --name-only --staged
       glob: "*.js"
-      run: node_modules/.bin/prettier --write {files}
+      run: node_modules/.bin/prettier --write {files} && git add {files}

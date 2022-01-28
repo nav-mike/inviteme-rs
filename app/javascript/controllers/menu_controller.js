@@ -21,7 +21,9 @@ export default class extends Controller {
   }
 
   toggleMenuDiv() {
-    this.isShow ? this.menuDivTarget.classList.remove("hidden") : this.menuDivTarget.classList.add("hidden");
+    this.isShow
+      ? this.menuDivTarget.classList.remove("hidden")
+      : this.menuDivTarget.classList.add("hidden");
   }
 
   toggle(event) {
