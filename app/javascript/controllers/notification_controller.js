@@ -4,6 +4,9 @@ export default class extends Controller {
   static targets = ["notification"];
 
   close() {
-    this.notificationTarget.classList.add("hidden");
+    this.notificationTarget.classList.add("disappear");
+    setTimeout(() => {
+      this.notificationTarget.classList.add("hidden");
+    }, 400);
   }
 }

@@ -3,7 +3,9 @@
     <h1 class="flex-1 text-xl font-medium"><%= content_for?(:title) ? content_for(:title) : 'Default title' %></h1>
     <%= turbo_stream_from "notification-count-#{current_user.id}" %>
     <%= turbo_frame_tag "notification-count-#{current_user.id}" do %>
-      <%= fa_icon 'bell', class: 'text-slate-400' %>
+      <span class="relative inline-flex">
+        <%= fa_icon 'bell', class: 'text-slate-400' %>
+      </span>
     <% end %>
   </div>
   <div class="flex items-center pl-4" data-controller="menu">
