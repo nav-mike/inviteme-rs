@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "notification-count-#{user_id}" do %>
+  <% if count == 0 %>
+    <%= fa_icon 'bell', class: 'text-slate-400' %>
+  <% else %>
+    <span class="bg-red-400 p-1 text-white rounded-3xl w-7 flex justify-center text-sm border-slate-300 border-2">
+      <%= count %>
+    </span>
+  <% end %>
+<% end %>

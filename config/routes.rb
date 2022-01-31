@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :notifications
   get '/signin', to: 'panel/user_sessions#new'
 
   namespace :panel do

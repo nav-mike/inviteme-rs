@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_28_144444) do
+ActiveRecord::Schema.define(version: 2022_01_31_114944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -66,6 +66,18 @@ ActiveRecord::Schema.define(version: 2022_01_28_144444) do
     t.index ["owner_id", "name"], name: "index_campaigns_on_owner_id_and_name", unique: true
     t.index ["owner_id"], name: "index_campaigns_on_owner_id"
     t.index ["token"], name: "index_campaigns_on_token", unique: true
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "message_type"
+    t.string "title"
+    t.text "message"
+    t.boolean "seen"
+    t.boolean "completed"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "promoters", force: :cascade do |t|
@@ -150,6 +162,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_144444) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "notifications", "users"
   add_foreign_key "tickets", "users", column: "author_id"
   create_function :logidze_logger, sql_definition: <<-SQL
       CREATE OR REPLACE FUNCTION public.logidze_logger()

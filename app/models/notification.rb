@@ -1,34 +1,12 @@
-class Notification
-  TYPES = %w[info success warning error].freeze
-  ICONS = {
-    'info' => 'info-circle',
-    'success' => 'check-square',
-    'warning' => 'question-circle',
-    'error' => 'exclamation-triangle'
-  }.freeze
-  COLORS = {
-    'info' => 'blue',
-    'success' => 'green',
-    'warning' => 'yellow',
-    'error' => 'red'
-  }.freeze
+class Notification < ApplicationRecord
+  belongs_to :user
 
-  attr_reader :title, :message
+  enum message_type: { info: 0, success: 1, warning: 2, error: 3 }
 
-  def initialize(type, title, message)
-    super()
-    raise ArgumentError, "Type should be in #{TYPES}" unless TYPES.include?(type.to_s)
-
-    @type = type.to_s
-    @title = title
-    @message = message
-  end
-
-  def icon
-    ICONS[@type]
-  end
-
-  def color
-    COLORS[@type]
+  after_save_commit do
+    broadcast_replace_to "notification-count-#{user_id}",
+                         target: "notification-count-#{user_id}",
+                         partial: 'shared/panel/notifications_icon',
+                         locals: { count: Notification.where(user_id: user_id, seen: false).size, user_id: user_id }
   end
 end
