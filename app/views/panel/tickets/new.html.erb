@@ -1,0 +1,12 @@
+<div class="bg-slate-200 w-full p-5">
+  <%- title 'New ticket' %>
+  <%= render 'shared/admin/header' %>
+
+  <%= render "form", ticket: @ticket %>
+
+  <br>
+
+  <div>
+    <%= link_to "Back to my tickets", panel_tickets_path, class: 'm-5 hover:underline' %>
+  </div>
+</div>

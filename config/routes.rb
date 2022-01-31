@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/signin', to: 'panel/user_sessions#new'
 
   namespace :panel do
+    resources :tickets
     get 'integrations/index'
     get '/', to: 'pages#index'
     get '/documentation', to: 'pages#documentation', as: :documentation

@@ -13,7 +13,6 @@ module Panel
         Rails.logger.debug 'ok'
         redirect_to root_url
       else
-        debugger
         Rails.logger.debug 'error'
         render action: :new
       end
