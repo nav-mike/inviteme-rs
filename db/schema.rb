@@ -69,11 +69,11 @@ ActiveRecord::Schema.define(version: 2022_01_31_114944) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "message_type"
-    t.string "title"
-    t.text "message"
-    t.boolean "seen"
-    t.boolean "completed"
+    t.integer "message_type", default: 0, null: false
+    t.string "title", null: false
+    t.text "message", null: false
+    t.boolean "seen", default: false
+    t.boolean "completed", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

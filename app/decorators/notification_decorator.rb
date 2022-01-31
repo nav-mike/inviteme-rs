@@ -13,10 +13,10 @@ class NotificationDecorator < ApplicationDecorator
   }.freeze
 
   def icon
-    ICONS[type]
+    ICONS[message_type]
   end
 
   def color
-    COLORS[type]
+    COLORS[message_type]
   end
 end

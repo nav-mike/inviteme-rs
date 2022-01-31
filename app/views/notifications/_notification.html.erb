@@ -1,10 +1,12 @@
-<div class="flex flex-col text-<%= notification.color %>-900 bg-<%= notification.color %>-100 p-3 my-3 w-96 rounded-md"
-     data-controller="notification" data-notification-target="notification" id="<%= dom_id notification %>">
-  <div class="flex justify-between items-center pb-2">
-    <%= fa_icon notification.icon %>
-    <span class="flex-1 px-5 font-bold"><%= notification.title %></span>
-    <%= fa_icon 'times', class: 'cursor-pointer', 'data-action': 'click->notification#close' %>
+<%= turbo_frame_tag "notifications-#{user_id}" do %>
+  <div class="flex flex-col text-<%= notification.color %>-900 bg-<%= notification.color %>-100 p-3 my-3 w-96 rounded-md"
+       data-controller="notification" data-notification-target="notification" id="<%= dom_id notification %>">
+    <div class="flex justify-between items-center pb-2">
+      <%= fa_icon notification.icon %>
+      <span class="flex-1 px-5 font-bold"><%= notification.title %></span>
+      <%= fa_icon 'times', class: 'cursor-pointer', 'data-action': 'click->notification#close' %>
+    </div>
+    <p><%= notification.message %></p>
   </div>
-  <p><%= notification.message %></p>
-</div>
+<% end %>
 

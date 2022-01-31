@@ -32,3 +32,8 @@
     </div>
   </div>
 </div>
+<div class="absolute top-5 right-5 flex flex-col">
+  <%= turbo_stream_from "notifications-#{current_user.id}" %>
+  <%= turbo_frame_tag "notifications-#{current_user.id}" do %>
+  <% end %>
+</div>
