@@ -3,9 +3,7 @@
     <h1 class="flex-1 text-xl font-medium"><%= content_for?(:title) ? content_for(:title) : 'Default title' %></h1>
     <%= turbo_stream_from "notification-count-#{current_user.id}" %>
     <%= turbo_frame_tag "notification-count-#{current_user.id}" do %>
-      <span class="relative inline-flex">
-        <%= fa_icon 'bell', class: 'text-slate-400' %>
-      </span>
+      <%= render 'shared/panel/notifications_icon', count: @notifications.size, user_id: current_user.id %>
     <% end %>
   </div>
   <div class="flex items-center pl-4" data-controller="menu">
@@ -37,5 +35,8 @@
 <div class="absolute top-5 right-5 flex flex-col">
   <%= turbo_stream_from "notifications-#{current_user.id}" %>
   <%= turbo_frame_tag "notifications-#{current_user.id}" do %>
+    <% @notifications.each do |notification| %>
+      <%= render 'notifications/notification', notification: notification, user_id: current_user.id %>
+    <% end %>
   <% end %>
 </div>

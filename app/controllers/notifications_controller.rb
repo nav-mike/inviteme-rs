@@ -52,6 +52,7 @@ class NotificationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to notifications_url, notice: "Notification was successfully destroyed." }
       format.json { head :no_content }
+      format.turbo_stream { turbo_stream.remove @notification }
     end
   end
 

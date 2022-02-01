@@ -7,7 +7,7 @@ class Notification < ApplicationRecord
   validates :message, presence: true
   validates :message_type, presence: true
 
-  after_save_commit do
+  after_create_commit do
     broadcast_replace_to "notification-count-#{user_id}",
                          target: "notification-count-#{user_id}",
                          partial: 'shared/panel/notifications_icon',
@@ -17,5 +17,14 @@ class Notification < ApplicationRecord
                          target: "notifications-#{user_id}",
                          partial: 'notifications/notification',
                          locals: { notification: NotificationDecorator.decorate(self), user_id: user_id }
+  end
+
+  after_destroy_commit do
+    broadcast_replace_to "notification-count-#{user_id}",
+                         target: "notification-count-#{user_id}",
+                         partial: 'shared/panel/notifications_icon',
+                         locals: { count: Notification.where(user_id: user_id, seen: false).size, user_id: user_id }
+
+    broadcast_remove_to "notifications-#{user_id}"
   end
 end

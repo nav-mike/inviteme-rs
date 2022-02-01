@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "notification-count-#{user_id}" do %>
-  <span class="relative inline-flex">
+  <span class="relative inline-flex cursor-pointer" title="<%= pluralize(count, 'notification') %>">
     <%= fa_icon 'bell', class: 'text-slate-400' %>
     <% if count != 0 %>
       <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">

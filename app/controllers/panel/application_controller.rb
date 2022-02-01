@@ -3,11 +3,17 @@ module Panel
   class ApplicationController < ApplicationController
     helper_method :current_user, :current_user_session
 
-    before_action :define_header_user_data
+    before_action :define_header_user_data, :notifications
 
     layout 'panel'
 
     private
+
+    def notifications
+      @notifications = NotificationDecorator.decorate_collection(
+        Notification.where(user: current_user, seen: false).order(created_at: :desc).limit(5)
+      )
+    end
 
     def define_header_user_data
       @header_user = UserDecorator.decorate(current_user)
