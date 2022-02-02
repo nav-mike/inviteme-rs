@@ -11,8 +11,9 @@ module Panel
 
     def notifications
       @notifications = NotificationDecorator.decorate_collection(
-        Notification.where(user: current_user, seen: false).order(created_at: :desc).limit(5)
+        Notification.none
       )
+      @notifications_count = Notification.where(user: current_user, seen: false).count
     end
 
     def define_header_user_data
