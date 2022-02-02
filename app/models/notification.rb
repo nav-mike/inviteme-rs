@@ -15,7 +15,7 @@ class Notification < ApplicationRecord
 
     broadcast_prepend_to "notifications-#{user_id}",
                          target: "notifications-#{user_id}",
-                         partial: 'notifications/notification',
+                         partial: "notifications/notification/#{message_type}",
                          locals: { notification: NotificationDecorator.decorate(self), user_id: user_id }
   end
 

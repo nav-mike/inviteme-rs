@@ -1,0 +1,16 @@
+<%= turbo_frame_tag notification do %>
+  <div class="flex flex-col text-red-900 bg-red-100 p-3 my-3 w-96
+              rounded-md slide-down border-red-300 border-2"
+       id="<%= dom_id notification %>">
+    <div class="flex justify-between items-center pb-2">
+      <%= fa_icon notification.icon %>
+      <span class="flex-1 px-5 font-bold"><%= notification.title %></span>
+      <%= button_to notification_path(notification), method: :delete do %>
+        <%= fa_icon 'times', class: 'cursor-pointer' %>
+      <% end %>
+    </div>
+    <p><%= notification.message %></p>
+    <small class="text-xs self-end"><%= time_tag notification.created_at, 'data-local': 'time-ago' %></small>
+  </div>
+<% end %>
+
