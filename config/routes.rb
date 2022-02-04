@@ -9,10 +9,11 @@ Rails.application.routes.draw do
     get 'integrations/index'
     get '/', to: 'pages#index'
     get '/documentation', to: 'pages#documentation', as: :documentation
-    get '/settings', to: 'pages#settings', as: :settings
 
     resource :user_sessions, only: %i[create destroy], as: :sessions
     resources :campaigns
+
+    get '/settings', to: 'settings#edit', as: :edit_settings
   end
 
   # scope :admin do
