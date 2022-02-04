@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2022_01_31_114944) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "message_type", default: 0, null: false
+    t.integer "notification_type", default: 0, null: false
     t.string "title", null: false
     t.text "message", null: false
     t.boolean "seen", default: false

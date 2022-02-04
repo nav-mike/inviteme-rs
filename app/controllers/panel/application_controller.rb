@@ -13,7 +13,7 @@ module Panel
       @notifications = NotificationDecorator.decorate_collection(
         Notification.none
       )
-      @notifications_count = Notification.where(user: current_user, seen: false).count
+      @notifications_count = Notification.where(user: current_user, seen: false).action_required.count
     end
 
     def define_header_user_data
