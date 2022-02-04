@@ -11,6 +11,7 @@
     </div>
     <p><%= notification.message %></p>
     <small class="text-xs self-end"><%= time_tag notification.created_at, 'data-local': 'time-ago' %></small>
+    <div class="h-2 mt-3 bg-green-200" data-notification-target="progressbar"></div>
   </div>
 <% end %>
 
