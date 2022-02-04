@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resource :user_sessions, only: %i[create destroy], as: :sessions
     resources :campaigns
 
-    get '/settings', to: 'settings#edit', as: :edit_settings
+    get '/settings', to: 'settings#show', as: :show_settings
+    get '/settings/edit', to: 'settings#edit', as: :edit_settings
+    patch '/settings', to: 'settings#update', as: :update_settings
   end
 
   # scope :admin do

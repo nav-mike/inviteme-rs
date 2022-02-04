@@ -1,20 +1,26 @@
 <div class="bg-slate-200 w-full p-5">
-  <%- title "Settings" %>
+  <%- title "Edit Settings" %>
   <%= render 'shared/admin/header' %>
-  <div>
-    <h2>Account information</h2>
-    <p>email</p>
-    <p>password</p>
-    <p>personal api token</p>
+  <%= form_with model: current_user, url: panel_edit_settings_path do |form| %>
+    <div class="flex flex-col border-2 border-slate-300 m-3 p-3 rounded-md">
+      <h2 class="text-xl">Account information</h2>
+      <div class="flex flex-col m-3">
+        <%= turbo_frame_tag dom_id(current_user, "current_user_email_turbo_frame"), class: 'contents' do %>
+          <%= render(FormInputComponent.new form: form, field: :email, label: :email, placeholder: 'Enter your email address') %>
+        <% end %>
+        <p>password</p>
+        <p>personal api token</p>
+      </div>
+    </div>
+    <div>
+      <h2>Personal information</h2>
+      <p>First name</p>
+      <p>Last name</p>
+      <p>avatar</p>
+    </div>
+    <div>
+      <h2>Team information</h2>
+      <p>Soon in 2022</p>
+    </div>
   </div>
-  <div>
-    <h2>Personal information</h2>
-    <p>First name</p>
-    <p>Last name</p>
-    <p>avatar</p>
-  </div>
-  <div>
-    <h2>Team information</h2>
-    <p>Soon in 2022</p>
-  </div>
-</div>
+<% end %>

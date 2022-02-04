@@ -37,6 +37,7 @@ gem 'simple_form'
 gem 'requestjs-rails'
 gem "font-awesome-rails"
 gem 'kaminari'
+gem "view_component"
 
 # authentication
 gem "action_policy"
