@@ -10,7 +10,7 @@
           <div class="flex" data-controller="show-pencil" data-action="mouseenter->show-pencil#show
                                                                        mouseleave->show-pencil#hide">
             <%= current_user.email %>
-            <%= link_to panel_edit_settings_path, class: 'ml-2 flex', 'data-show-pencil-target': 'pencil' do %>
+            <%= link_to panel_edit_settings_path, class: 'ml-2 flex hidden', 'data-show-pencil-target': 'pencil' do %>
               <%= fa_icon 'pencil' %>
             <% end %>
           </div>
