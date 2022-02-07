@@ -49,11 +49,30 @@
       <% end %>
     </div>
   </div>
-  <div>
-    <h2>Personal information</h2>
-    <p>First name</p>
-    <p>Last name</p>
-    <p>avatar</p>
+  <div class="flex flex-col border-2 border-slate-300 m-3 p-3 rounded-md">
+    <h2 class="text-xl">Personal information</h2>
+    <div class="flex flex-col m-3">
+
+      <% frame_id = dom_id current_user, "current_user_first_name_turbo_frame" %>
+      <%= form_with model: current_user, url: panel_update_settings_path, data: { turbo_frame: frame_id } do |form| %>
+        <%= turbo_frame_tag frame_id, class: 'contents' do %>
+          <div class="flex m-3" data-controller="show-pencil" data-action="mouseenter->show-pencil#show
+                                                                           mouseleave->show-pencil#hide">
+            <% if current_user.first_name.present? %>
+              <%= current_user.first_name %>
+            <% else %>
+              <em><%= 'Not set' %></em>
+            <% end %>
+            <%= link_to panel_edit_settings_path, class: 'ml-2 flex hidden', 'data-show-pencil-target': 'pencil' do %>
+              <%= fa_icon 'pencil' %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <p>Last name</p>
+      <p>avatar</p>
+    </div>
   </div>
   <div>
     <h2>Team information</h2>

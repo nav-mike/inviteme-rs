@@ -65,12 +65,30 @@
         <% end %>
       </div>
     </div>
-    <div>
-      <h2>Personal information</h2>
-      <p>First name</p>
-      <p>Last name</p>
-      <p>avatar</p>
+
+    <div class="flex flex-col border-2 border-slate-300 m-3 p-3 rounded-md">
+      <h2 class="text-xl">Personal information</h2>
+      <div class="flex flex-col m-3">
+
+        <%= turbo_frame_tag dom_id(current_user, "current_user_first_name_turbo_frame"), class: 'contents' do %>
+          <% if current_user&.errors&.full_messages.present? && current_user&.errors&.has_key?(:first_name) %>
+            <div class="flex text-red-900 m-3">
+              <ul>
+                <% current_user&.errors&.full_messages.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <%= render(FormInputComponent.new form: form, field: :first_name, label: :first_name,
+                                            placeholder: 'Enter your First Name') %>
+        <% end %>
+
+        <p>Last name</p>
+        <p>avatar</p>
+      </div>
     </div>
+
     <div>
       <h2>Team information</h2>
       <p>Soon in 2022</p>
