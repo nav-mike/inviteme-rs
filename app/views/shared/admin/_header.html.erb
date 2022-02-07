@@ -7,7 +7,12 @@
     <% end %>
   </div>
   <div class="flex items-center pl-4" data-controller="menu">
-    <span class="pr-4"><%= @header_user.full_name %></span>
+    <span class="pr-4">
+      <%= turbo_stream_from dom_id(@header_user, 'header_user_full_name') %>
+      <%= turbo_frame_tag dom_id(@header_user, 'header_user_full_name') do %>
+        <%= render 'panel/users/full_name', user: @header_user %>
+      <% end %>
+    </span>
     <%= link_to '#', 'data-action': 'click->menu#toggle', id: 'menuLink' do %>
       <%= image_tag 'https://avatars.githubusercontent.com/u/2811491?v=4', size: '44' , class: 'rounded-3xl',
                     id: 'menuImg' %>
@@ -16,7 +21,7 @@
          data-menu-target="menuDiv" >
       <ul>
         <li class="hover:bg-slate-200 hover:text-slate-900 rounded py-2">
-          <%= link_to '/', class: 'py-3 px-5' do %>
+          <%= link_to panel_show_settings_path, class: 'py-3 px-5' do %>
             <%= fa_icon 'user' %> Profile
           <% end %>
         </li>
