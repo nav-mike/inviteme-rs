@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         get :generate_token
       end
     end
+    get '/settings/token', to: 'settings#token', as: :personal_api_token
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -22,7 +22,7 @@ module Panel
     private
 
     def current_user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :password_confirmation, :personal_api_token)
     end
   end
 end

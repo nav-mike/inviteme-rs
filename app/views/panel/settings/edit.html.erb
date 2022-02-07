@@ -27,7 +27,7 @@
               </ul>
             </div>
           <% end %>
-          <div class="grid grid-cols-2 grid-rows-3 gap-4 p-2 border-2 border-slate-300 rounded-md">
+          <div class="grid grid-cols-2 grid-rows-3 gap-4 my-3 p-2 border-2 border-slate-300 rounded-md">
             <%= form.label :password, class: 'mx-2' %>
             <%= form.password_field :password, placeholder: 'Enter the password', class: 'flex-1 rounded-md p-2' %>
             <%= form.label :password_confirmation, class: 'mx-2' %>
@@ -36,7 +36,33 @@
             <button class="bg-green-100 text-black rounded" title="Save">Save</button>
           </div>
         <% end %>
-        <p>personal api token</p>
+        <%= turbo_frame_tag dom_id(current_user, "current_user_personal_api_token_turbo_frame"), class: 'contents' do %>
+          <% if current_user&.errors&.full_messages.present? && current_user&.errors&.has_key?(:personal_api_token) %>
+            <div class="flex text-red-900 m-3">
+              <ul>
+                <% current_user&.errors&.full_messages.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="grid grid-cols-2 grid-rows-2 gap-4 p-2 border-2 border-slate-300 rounded-md"
+               data-controller="generate-token" data-generate-token-url-value="<%= api_personal_api_token_path %>"
+               data-generate-token-token-value="<%= current_user.personal_api_token %>">
+            <%= form.label :personal_api_token, class: 'mx-2' %>
+            <div class="flex border-2 rounded-md p-2 border-slate-300 bg-white">
+              <%= form.text_field :personal_api_token, placeholder: 'Enter your personal API token',
+                                  class: 'grow-2 border-none rounded-l-md bg-white w-full h-full focus:outline-none',
+                                  'data-generate-token-target': 'token', readonly: true %>
+              <%= button_tag '', type: 'button', class: 'bg-white rounded-r-md text-slate-300 hover:text-slate-700',
+                             title: 'Generate a new token', 'data-action': 'click->generate-token#regenerateToken' do %>
+                <%= fa_icon 'refresh' %>
+              <% end %>
+            </div>
+            <a class="flex bg-slate-100 text-black justify-center items-center rounded" href="<%= panel_show_settings_path %>" title="Cancel">Cancel</a>
+            <button class="bg-green-100 text-black rounded" title="Save">Save</button>
+          </div>
+        <% end %>
       </div>
     </div>
     <div>

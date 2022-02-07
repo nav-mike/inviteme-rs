@@ -8,7 +8,7 @@
       <%= form_with model: current_user, url: panel_update_settings_path, data: { turbo_frame: frame_id } do |form| %>
         <%= turbo_frame_tag frame_id, class: 'contents' do %>
           <div class="flex m-3" data-controller="show-pencil" data-action="mouseenter->show-pencil#show
-                                                                       mouseleave->show-pencil#hide">
+                                                                           mouseleave->show-pencil#hide">
             <%= current_user.email %>
             <%= link_to panel_edit_settings_path, class: 'ml-2 flex hidden', 'data-show-pencil-target': 'pencil' do %>
               <%= fa_icon 'pencil' %>
@@ -26,7 +26,27 @@
           </div>
         <% end %>
       <% end %>
-      <p>personal api token</p>
+      <% frame_id = dom_id current_user, "current_user_personal_api_token_turbo_frame" %>
+      <%= form_with model: current_user, url: panel_update_settings_path, data: { turbo_frame: frame_id } do |form| %>
+        <%= turbo_frame_tag frame_id, class: 'contents' do %>
+          <div class="flex m-3 items-center" data-controller="copy-to-clipboard
+                                                              show-pencil"
+               data-action="mouseenter->show-pencil#show
+                            mouseleave->show-pencil#hide">
+            <span>Personal API token</span>
+            <div class="mx-3 p-2 border-2 rounded-md border-slate-300 bg-slate-100">
+              <span data-copy-to-clipboard-target="token"><%= current_user.personal_api_token %></span>
+              <%= button_tag '', type: 'button', class: 'ml-2 text-slate-400 hover:text-slate-700 token-title',
+                             title: 'Copy to clipboard', 'data-action': 'click->copy-to-clipboard#copyToClipboard' do %>
+                <%= fa_icon 'files-o', 'data-copy-to-clipboard-target': 'copyIcon' %>
+              <% end %>
+            </div>
+            <%= link_to panel_edit_settings_path, class: 'ml-2 flex hidden', 'data-show-pencil-target': 'pencil' do %>
+              <%= fa_icon 'pencil' %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <div>
