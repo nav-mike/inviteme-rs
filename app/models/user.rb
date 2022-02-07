@@ -12,6 +12,7 @@ class User < ApplicationRecord
                        length: { minimum: 8, if: :require_password? }
   validates :password_confirmation, length: { minimum: 8, if: :require_password? }
   validates :personal_api_token, presence: true, uniqueness: true, length: { is: 32 }
+  validates :avatar, content_type: %i[png jpg jpeg]
 
   before_save :generate_personal_token
   after_create :assign_default_role
@@ -23,7 +24,11 @@ class User < ApplicationRecord
   end
 
   has_many :campaigns, dependent: :destroy
-  has_one_attached :avatar
+  has_one_attached :avatar do |attachable|
+    attachable.variant :thumb, resize_to_limit: [128, 128]
+    attachable.variant :micro, resize_to_limit: [20, 20]
+    attachable.variant :medium, resize_to_limit: [256, 256]
+  end
 
   def assign_default_role
     add_role(:user)
