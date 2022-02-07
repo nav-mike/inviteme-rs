@@ -84,7 +84,20 @@
                                             placeholder: 'Enter your First Name') %>
         <% end %>
 
-        <p>Last name</p>
+        <%= turbo_frame_tag dom_id(current_user, "current_user_last_name_turbo_frame"), class: 'contents' do %>
+          <% if current_user&.errors&.full_messages.present? && current_user&.errors&.has_key?(:last_name) %>
+            <div class="flex text-red-900 m-3">
+              <ul>
+                <% current_user&.errors&.full_messages.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <%= render(FormInputComponent.new form: form, field: :last_name, label: :last_name,
+                                            placeholder: 'Enter your Last Name') %>
+        <% end %>
+
         <p>avatar</p>
       </div>
     </div>
