@@ -29,7 +29,7 @@
           <%= fa_icon 'bug' %> Report error
         <% end %>
       </li>
-      <li class="flex hover:bg-slate-900 hover:text-slate-300">
+      <li class="flex<%= active_navbar_link_classes(settings?(params)) %>">
         <%= link_to panel_show_settings_path, class: 'w-full py-3 px-5' do %>
           <%= fa_icon 'cog' %> Settings
         <% end %>
