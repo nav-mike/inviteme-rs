@@ -11,7 +11,9 @@ class User < ApplicationRecord
   validates :password, confirmation: { if: :require_password? },
                        length: { minimum: 8, if: :require_password? }
   validates :password_confirmation, length: { minimum: 8, if: :require_password? }
+  validates :personal_api_token, presence: true, uniqueness: true, length: { is: 32 }
 
+  before_save :generate_personal_token
   after_create :assign_default_role
 
   after_save_commit if: :email_or_names_changed? do
@@ -32,5 +34,14 @@ class User < ApplicationRecord
 
   def email_or_names_changed?
     email_previously_changed? || first_name_previously_changed? || last_name_previously_changed?
+  end
+
+  def generate_personal_token
+    return if personal_api_token.present?
+
+    loop do
+      personal_api_token = SecureRandom.hex(16)
+      break if User.where(personal_api_token: personal_api_token).empty?
+    end
   end
 end
