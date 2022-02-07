@@ -23,6 +23,7 @@ class User < ApplicationRecord
   end
 
   has_many :campaigns, dependent: :destroy
+  has_one_attached :avatar
 
   def assign_default_role
     add_role(:user)
