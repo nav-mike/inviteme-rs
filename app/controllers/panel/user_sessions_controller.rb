@@ -10,10 +10,8 @@ module Panel
     def create
       @user_session = UserSession.new(user_session_params.to_h)
       if @user_session.save
-        Rails.logger.debug 'ok'
         redirect_to root_url
       else
-        Rails.logger.debug 'error'
         render action: :new
       end
     end

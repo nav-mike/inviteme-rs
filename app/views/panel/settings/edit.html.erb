@@ -6,9 +6,36 @@
       <h2 class="text-xl">Account information</h2>
       <div class="flex flex-col m-3">
         <%= turbo_frame_tag dom_id(current_user, "current_user_email_turbo_frame"), class: 'contents' do %>
+          <% if current_user&.errors&.full_messages.present? && current_user&.errors&.has_key?(:email) %>
+            <div class="flex text-red-900 m-3">
+              <ul>
+                <% current_user&.errors&.full_messages.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
           <%= render(FormInputComponent.new form: form, field: :email, label: :email, placeholder: 'Enter your email address') %>
         <% end %>
-        <p>password</p>
+        <%= turbo_frame_tag dom_id(current_user, "current_user_password_turbo_frame"), class: 'contents' do %>
+          <% if current_user&.errors&.full_messages.present? && current_user&.errors&.has_key?(:password) %>
+            <div class="flex text-red-900 m-3">
+              <ul>
+                <% current_user&.errors&.full_messages.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="grid grid-cols-2 grid-rows-3 gap-4 p-2 border-2 border-slate-300 rounded-md">
+            <%= form.label :password, class: 'mx-2' %>
+            <%= form.password_field :password, placeholder: 'Enter the password', class: 'flex-1 rounded-md p-2' %>
+            <%= form.label :password_confirmation, class: 'mx-2' %>
+            <%= form.password_field :password_confirmation, placeholder: 'Enter the password again', class: 'flex-1 rounded-md p-2' %>
+            <a class="flex bg-slate-100 text-black justify-center items-center rounded" href="<%= panel_show_settings_path %>" title="Cancel">Cancel</a>
+            <button class="bg-green-100 text-black rounded" title="Save">Save</button>
+          </div>
+        <% end %>
         <p>personal api token</p>
       </div>
     </div>

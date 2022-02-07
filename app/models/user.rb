@@ -19,4 +19,8 @@ class User < ApplicationRecord
   def assign_default_role
     add_role(:user)
   end
+
+  def require_password?
+    new_record? || !password.nil? || !password_confirmation.nil?
+  end
 end

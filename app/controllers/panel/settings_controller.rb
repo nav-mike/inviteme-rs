@@ -1,5 +1,7 @@
 module Panel
   class SettingsController < Panel::ApplicationController
+    include ActionView::RecordIdentifier
+
     def show(); end
 
     def edit(); end
@@ -20,7 +22,7 @@ module Panel
     private
 
     def current_user_params
-      params.require(:user).permit(:email)
+      params.require(:user).permit(:email, :password, :password_confirmation)
     end
   end
 end
