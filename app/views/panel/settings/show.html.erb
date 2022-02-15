@@ -55,13 +55,20 @@
     <div class="flex m-3">
 
       <div class="flex flex-col m-3 p-3 border-2 border-slate-300 rounded-md items-center">
-        <% if current_user.avatar.present? %>
-          <%= image_tag 'https://avatars.githubusercontent.com/u/2811491?v=4', size: '80', class: 'rounded-md' %>
-        <% else %>
-          <%= fa_icon 'user-circle-o 5x' %>
+        <% frame_id = dom_id current_user, "current_user_avatar_turbo_frame" %>
+        <%= form_with model: current_user, url: panel_update_settings_path, data: { turbo_frame: frame_id } do |form| %>
+          <%= form.file_field :avatar, id: :user_avatar, accept: 'image/png,image/jpg,image/jpeg', class: 'hidden',
+                                       'data-copy-file-target': 'destination' %>
+          <%= turbo_frame_tag frame_id, class: 'contents' do %>
+            <% if current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar.variant(:medium), size: '80', class: 'rounded-md' %>
+            <% else %>
+              <%= fa_icon 'user-circle-o 5x' %>
+            <% end %>
+            <%= link_to 'Edit', panel_edit_settings_path,
+                        class: 'flex mt-3 p-2 border-2 border-slate-300 rounded-md hover:bg-slate-300 justify-center' %>
+          <% end %>
         <% end %>
-        <%= link_to 'Edit', panel_edit_settings_path,
-                    class: 'flex mt-3 p-2 border-2 border-slate-300 rounded-md hover:bg-slate-300' %>
       </div>
 
       <div class="flex flex-col">

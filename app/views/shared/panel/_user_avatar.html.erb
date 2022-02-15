@@ -1,0 +1,7 @@
+<%= turbo_frame_tag user do %>
+  <% if user.avatar.attached? %>
+    <%= image_tag avatar, size: '44', class: 'rounded-full', id: 'menuImg' %>
+  <% else %>
+    <%= fa_icon 'user-circle-o 3x', id: 'menuImg' %>
+  <% end %>
+<% end %>

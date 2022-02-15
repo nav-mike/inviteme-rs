@@ -14,11 +14,9 @@
       <% end %>
     </span>
     <%= link_to '#', 'data-action': 'click->menu#toggle', id: 'menuLink' do %>
-      <% if @header_user.avatar.present? %>
-        <%= image_tag 'https://avatars.githubusercontent.com/u/2811491?v=4', size: '44' , class: 'rounded-3xl',
-                      id: 'menuImg' %>
-      <% else %>
-        <%= fa_icon 'user-circle-o 3x', id: 'menuImg' %>
+      <%= turbo_stream_from dom_id(@header_user, 'header_user_avatar') %>
+      <%= turbo_frame_tag dom_id(@header_user, 'header_user_avatar') do %>
+        <%= render 'shared/panel/user_avatar', user: @header_user, avatar: @header_user.avatar.variant(:thumb) %>
       <% end %>
     <% end %>
     <div class="absolute hidden right-9 bg-slate-100 custom-top-90 p-3 rounded-md border-slate-300 border-2"

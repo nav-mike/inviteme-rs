@@ -1,7 +1,7 @@
 <div class="bg-slate-200 w-full p-5">
   <%- title "Edit Settings" %>
   <%= render 'shared/admin/header' %>
-  <%= form_with model: current_user, url: panel_edit_settings_path do |form| %>
+  <%= form_with model: current_user, url: panel_update_settings_path do |form| %>
     <div class="flex flex-col border-2 border-slate-300 m-3 p-3 rounded-md">
       <h2 class="text-xl">Account information</h2>
       <div class="flex flex-col m-3">
@@ -68,37 +68,68 @@
 
     <div class="flex flex-col border-2 border-slate-300 m-3 p-3 rounded-md">
       <h2 class="text-xl">Personal information</h2>
-      <div class="flex flex-col m-3">
+      <div class="flex m-3">
 
-        <%= turbo_frame_tag dom_id(current_user, "current_user_first_name_turbo_frame"), class: 'contents' do %>
-          <% if current_user&.errors&.full_messages.present? && current_user&.errors&.has_key?(:first_name) %>
-            <div class="flex text-red-900 m-3">
-              <ul>
-                <% current_user&.errors&.full_messages.each do |error| %>
-                  <li><%= error %></li>
-                <% end %>
-              </ul>
+        <div class="flex flex-col m-3 p-3 border-2 border-slate-300 rounded-md items-center">
+          <%= turbo_frame_tag dom_id(current_user, "current_user_avatar_turbo_frame"), class: 'contents' do %>
+            <% if current_user&.errors&.full_messages.present? && current_user&.errors&.has_key?(:personal_api_token) %>
+              <div class="flex text-red-900 m-3">
+                <ul>
+                  <% current_user&.errors&.full_messages.each do |error| %>
+                    <li><%= error %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="flex flex-col" data-controller="avatar-preview">
+              <% has_avatar = current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar&.variant(:medium) || '/', size: '80',
+                            class: "rounded-md #{has_avatar ? '' : 'hidden'}", 'data-avatar-preview-target': 'avatarImg' %>
+              <span class="<%= has_avatar ? 'hidden' : '' %>" data-avatar-preview-target="avatarIcon">
+                <%= fa_icon 'user-circle-o 5x' %>
+              </span>
+              <%= form.file_field :avatar, id: :user_avatar, accept: 'image/png,image/jpg,image/jpeg', class: 'm-3',
+                                  'data-avatar-preview-target': 'avatarInput',
+                                  'data-copy-file-target': 'source' %>
+              <div class="flex justify-evenly m-3">
+                <a class="flex bg-slate-100 p-2 text-black justify-center items-center rounded" href="<%= panel_show_settings_path %>" title="Cancel">Cancel</a>
+                <button class="bg-green-100 p-2 text-black rounded" title="Save" type="submit">Save</button>
+              </div>
             </div>
           <% end %>
-          <%= render(FormInputComponent.new form: form, field: :first_name, label: :first_name,
-                                            placeholder: 'Enter your First Name') %>
-        <% end %>
+        </div>
 
-        <%= turbo_frame_tag dom_id(current_user, "current_user_last_name_turbo_frame"), class: 'contents' do %>
-          <% if current_user&.errors&.full_messages.present? && current_user&.errors&.has_key?(:last_name) %>
-            <div class="flex text-red-900 m-3">
-              <ul>
-                <% current_user&.errors&.full_messages.each do |error| %>
-                  <li><%= error %></li>
-                <% end %>
-              </ul>
-            </div>
+        <div class="flex flex-col">
+
+          <%= turbo_frame_tag dom_id(current_user, "current_user_first_name_turbo_frame"), class: 'contents' do %>
+            <% if current_user&.errors&.full_messages.present? && current_user&.errors&.has_key?(:first_name) %>
+              <div class="flex text-red-900 m-3">
+                <ul>
+                  <% current_user&.errors&.full_messages.each do |error| %>
+                    <li><%= error %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <%= render(FormInputComponent.new form: form, field: :first_name, label: :first_name,
+                                              placeholder: 'Enter your First Name') %>
           <% end %>
-          <%= render(FormInputComponent.new form: form, field: :last_name, label: :last_name,
-                                            placeholder: 'Enter your Last Name') %>
-        <% end %>
 
-        <p>avatar</p>
+          <%= turbo_frame_tag dom_id(current_user, "current_user_last_name_turbo_frame"), class: 'contents' do %>
+            <% if current_user&.errors&.full_messages.present? && current_user&.errors&.has_key?(:last_name) %>
+              <div class="flex text-red-900 m-3">
+                <ul>
+                  <% current_user&.errors&.full_messages.each do |error| %>
+                    <li><%= error %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <%= render(FormInputComponent.new form: form, field: :last_name, label: :last_name,
+                                              placeholder: 'Enter your Last Name') %>
+          <% end %>
+
+        </div>
       </div>
     </div>
 

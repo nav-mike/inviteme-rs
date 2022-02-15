@@ -50,4 +50,11 @@ class User < ApplicationRecord
       break if User.where(personal_api_token: personal_api_token).empty?
     end
   end
+
+  def update_avatar_turbo(avatar)
+    broadcast_replace_to ActionView::RecordIdentifier.dom_id(self, 'header_user_avatar'),
+                         target: ActionView::RecordIdentifier.dom_id(self, 'header_user_avatar'),
+                         partial: 'shared/panel/user_avatar',
+                         locals: { user: UserDecorator.decorate(self), avatar: avatar }
+  end
 end

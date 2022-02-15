@@ -7,6 +7,7 @@ module Panel
     def edit(); end
 
     def update
+      current_user.avatar.attach(params[:user][:avatar]) if params[:user][:avatar].present?
       if current_user.update current_user_params
         Notification.create title: 'Settings updated',
                             message: 'Your settings have been updated.',
