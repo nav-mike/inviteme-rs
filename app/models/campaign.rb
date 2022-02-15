@@ -3,6 +3,7 @@ class Campaign < ApplicationRecord
 
   belongs_to :owner, class_name: 'User'
   has_many :promoters, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 255 }, uniqueness: { scope: :owner_id }
   validates :token, presence: true, uniqueness: true

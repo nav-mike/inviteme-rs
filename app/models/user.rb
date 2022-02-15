@@ -24,6 +24,7 @@ class User < ApplicationRecord
   end
 
   has_many :campaigns, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [128, 128]
     attachable.variant :micro, resize_to_limit: [20, 20]

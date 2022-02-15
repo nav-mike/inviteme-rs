@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_104930) do
+ActiveRecord::Schema.define(version: 2022_02_15_150311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2022_02_07_104930) do
     t.index ["owner_id", "name"], name: "index_campaigns_on_owner_id_and_name", unique: true
     t.index ["owner_id"], name: "index_campaigns_on_owner_id"
     t.index ["token"], name: "index_campaigns_on_token", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "campaign_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["campaign_id"], name: "index_comments_on_campaign_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -166,6 +176,8 @@ ActiveRecord::Schema.define(version: 2022_02_07_104930) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "campaigns"
+  add_foreign_key "comments", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "tickets", "users", column: "author_id"
   create_function :logidze_logger, sql_definition: <<-SQL
