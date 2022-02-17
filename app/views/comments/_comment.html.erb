@@ -1,17 +1,22 @@
-<div id="<%= dom_id comment %>">
-  <p>
-    <strong>Content:</strong>
+<div id="<%= dom_id comment %>" class="flex m-3 bg-slate-100 p-3 rounded-md">
+  <div class="flex flex-col">
+    <%= image_tag comment.user.avatar.variant(:thumb), class: 'rounded-full' %>
+    <p><%= UserDecorator.decorate(comment.user).full_name %></p>
+  </div>
+  <% if comment.created_at != comment.updated_at %>
+    <div class="text-slate-200" title="<%= "Edited at #{time_ago_in_words(comment.updated_at)} ago" %>">Edited</div>
+  <% end %>
+  <div class="flex-1 m-3">
     <%= comment.content %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= comment.user_id %>
-  </p>
-
-  <p>
-    <strong>Campaign:</strong>
-    <%= comment.campaign_id %>
-  </p>
-
+  </div>
+  <% if comment.user_id == current_user.id %>
+    <div class="flex flex-col">
+      <%= link_to '#', title: 'Edit comment' do %>
+        <%= fa_icon 'pencil' %>
+      <% end %>
+      <%= link_to '#', title: 'Delete comment' do %>
+        <%= fa_icon 'trash' %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
