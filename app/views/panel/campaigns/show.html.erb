@@ -62,7 +62,7 @@
       </table>
     </div>
 
-    <div class="border bg-white border-slate-300 rounded-md flex flex-col">
+    <div class="border bg-white border-slate-300 rounded-md flex flex-col mb-5">
       <div class="flex items-center justify-between p-5">
         <h3 class="text-lg self-center pb-3 pt-5">All promoters</h3>
         <%= link_to panel_campaign_path(@campaign, report: 'promoters', format: :csv), title: 'Export as CSV',
@@ -104,6 +104,20 @@
         <% end %>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <div class="border bg-white border-slate-300 rounded-md flex flex-col">
+    <div class="flex items-center justify-between p-5">
+      <h3 class="text-lg self-center pb-3 pt-5">Comments</h3>
+    </div>
+    <div id="comments">
+      <% @comments.each do |item| %>
+        <%= render 'comments/comment', comment: item %>
+      <% end %>
+    </div>
+    <div>
+      <%= render 'comments/form' %>
     </div>
   </div>
 </div>

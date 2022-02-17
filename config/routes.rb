@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :comments
   resources :notifications
   get '/signin', to: 'panel/user_sessions#new'
 
@@ -12,7 +11,11 @@ Rails.application.routes.draw do
     get '/documentation', to: 'pages#documentation', as: :documentation
 
     resource :user_sessions, only: %i[create destroy], as: :sessions
-    resources :campaigns
+    resources :campaigns do
+      scope module: :campaigns do
+        resources :comments
+      end
+    end
 
     get '/settings', to: 'settings#show', as: :show_settings
     get '/settings/edit', to: 'settings#edit', as: :edit_settings

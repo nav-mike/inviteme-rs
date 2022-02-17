@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 2022_02_15_150311) do
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "campaign_id", null: false
-    t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["campaign_id"], name: "index_comments_on_campaign_id"

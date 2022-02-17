@@ -1,6 +1,6 @@
 module Panel
   class CampaignsController < Panel::ApplicationController
-    before_action :set_campaign, only: %i[destroy edit update show]
+    before_action :set_campaign, only: %i[destroy edit update]
 
     def index
       respond_to do |format|
@@ -10,7 +10,7 @@ module Panel
         end
         format.csv do
           @campaigns = Campaign.where(owner: current_user).order(created_at: :asc)
-          send_data Campaigns::ExportCsv.call(@campaigns), file_name: "campaigns-#{Date.today}.csv"
+          send_data Campaigns::ExportCsv.call(@campaigns), file_name: "campaigns-#{Time.zone.today}.csv"
         end
       end
     end
@@ -18,6 +18,9 @@ module Panel
     def edit(); end
 
     def show
+      @campaign = Campaign.includes(:comments).find(params[:id])
+      @comment = Comment.new user: current_user, campaign: @campaign
+      @comments = @campaign.comments.with_rich_text_content_and_embeds.order(created_at: :asc).page(params[:page])
       respond_to do |format|
         format.html { @campaign = Panel::CampaignDecorator.decorate(set_campaign) }
         format.csv do
@@ -27,7 +30,7 @@ module Panel
           in 'promoters'
             promoters
           else
-            raise ActionController::RoutingError.new('Not Found')
+            raise ActionController::RoutingError, 'Not Found'
           end
         end
       end
@@ -61,12 +64,14 @@ module Panel
     private
 
     def referrals
-      send_data Referrals::ExportCsv.call(@campaign), file_name: "campaign-#{@campaign.id}-#{Date.today}-referrals.csv",
+      send_data Referrals::ExportCsv.call(@campaign),
+                file_name: "campaign-#{@campaign.id}-#{Time.zone.today}-referrals.csv",
                 type: 'text/csv'
     end
 
     def promoters
-      send_data Promoters::ExportCsv.call(@campaign), file_name: "campaign-#{@campaign.id}-#{Date.today}-promoters.csv",
+      send_data Promoters::ExportCsv.call(@campaign),
+                file_name: "campaign-#{@campaign.id}-#{Time.zone.today}-promoters.csv",
                 type: 'text/csv'
     end
 
