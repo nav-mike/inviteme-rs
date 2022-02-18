@@ -27,8 +27,12 @@ module Panel
 
         respond_to do |format|
           if @comment.save
-            format.html { redirect_to comment_url(@comment), notice: "Comment was successfully created." }
+            format.html { redirect_to panel_campaign_path(@comment.campaign_id), notice: "Comment was successfully created." }
             format.json { render :show, status: :created, location: @comment }
+            format.turbo_stream do
+              @comment.broadcast_append_to_campaign current_user
+              redirect_to panel_campaign_path(@comment.campaign_id)
+            end
           else
             format.html { render :new, status: :unprocessable_entity }
             format.json { render json: @comment.errors, status: :unprocessable_entity }
