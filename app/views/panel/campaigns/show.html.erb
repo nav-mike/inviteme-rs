@@ -120,7 +120,13 @@
       <% end %>
     </div>
     <div>
-      <%= render 'comments/form' %>
+      <% frame_id = dom_id @campaign.object, "comments-form-for" %>
+      <%= form_with model: @comment, url: panel_campaign_comments_path(@campaign),
+                    data: { turbo_frame: "comments-for-campaign-#{@campaign.id}" } do |form| %>
+        <%= turbo_frame_tag frame_id, class: 'm-3' do %>
+          <%= link_to 'Add comment', new_panel_campaign_comment_path(@campaign), class: 'hover:underline' %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
