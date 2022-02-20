@@ -115,7 +115,7 @@
     <div id="comments">
       <%= turbo_frame_tag "comments-for-campaign-#{@campaign.id}" do %>
         <% @comments.each do |item| %>
-          <%= render 'comments/comment', comment: item %>
+          <%= render 'panel/campaigns/comments/comment', comment: item %>
         <% end %>
       <% end %>
     </div>
@@ -123,8 +123,9 @@
       <% frame_id = dom_id @campaign.object, "comments-form-for" %>
       <%= form_with model: @comment, url: panel_campaign_comments_path(@campaign),
                     data: { turbo_frame: "comments-for-campaign-#{@campaign.id}" } do |form| %>
+        <%= turbo_stream_from frame_id %>
         <%= turbo_frame_tag frame_id, class: 'm-3' do %>
-          <%= link_to 'Add comment', new_panel_campaign_comment_path(@campaign), class: 'hover:underline' %>
+          <%= render 'panel/campaigns/comments/add_comment_btn', campaign: @campaign.object %>
         <% end %>
       <% end %>
     </div>

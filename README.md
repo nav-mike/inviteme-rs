@@ -61,6 +61,9 @@ Things you may want to cover:
 Будет ли кто-то пользлваться, как работает SEO и прочее. На этом этапе ожидаются расходы
 до $20/месяц.
 
+### v1.1
+Покрытие cypress-тестами.
+
 ### v2.0
 Разделение FE и BE. Для FE планируется использовать React + Chakra UI + Typescript + Vercel + React Saga.
 Для BE: Ruby on Rails API + удаление всех ui gem-ов, в т.ч. hotwire.

@@ -13,7 +13,8 @@ module Panel
 
       # GET /comments/new
       def new
-        @comment = Comment.new
+        @campaign = Campaign.find(params[:campaign_id])
+        @comment = @campaign.comments.new(user: current_user)
       end
 
       # GET /comments/1/edit
@@ -31,6 +32,7 @@ module Panel
             format.json { render :show, status: :created, location: @comment }
             format.turbo_stream do
               @comment.broadcast_append_to_campaign current_user
+              @comment.broadcast_hide_form
               redirect_to panel_campaign_path(@comment.campaign_id)
             end
           else

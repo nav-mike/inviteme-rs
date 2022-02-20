@@ -1,0 +1,4 @@
+<% frame_id = dom_id campaign, "comments-form-for" %>
+<%= turbo_frame_tag frame_id, class: 'm-3' do %>
+  <%= link_to 'Add comment', new_panel_campaign_comment_path(campaign), class: 'hover:underline' %>
+<% end %>
