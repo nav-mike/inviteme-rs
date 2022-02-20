@@ -1,4 +1,9 @@
 <h1>New comment</h1>
 
-<%= render "form", comment: @comment %>
-
+<% frame_id = dom_id @comment.campaign, "comments-form-for" %>
+<%= turbo_frame_tag frame_id, class: 'm-3' do  %>
+  <%= form_with model: @comment, url: panel_campaign_comments_path(@comment.campaign), class: 'm-5',
+                data: { turbo_frame: "comments-for-campaign-#{@comment.campaign.id}" } do |form| %>
+    <%= render "form", comment: @comment, form: form %>
+  <% end %>
+<% end %>

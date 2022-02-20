@@ -1,23 +1,25 @@
-<div id="<%= dom_id comment %>" class="flex m-3 bg-slate-100 p-3 rounded-md">
-  <div class="flex flex-col">
-    <%= image_tag comment.user.avatar.variant(:thumb), class: 'rounded-full' %>
-    <p><%= UserDecorator.decorate(comment.user).full_name %></p>
-  </div>
-  <% if comment.created_at != comment.updated_at %>
-    <div class="text-slate-200" title="<%= "Edited at #{time_ago_in_words(comment.updated_at)} ago" %>">Edited</div>
-  <% end %>
-  <div class="flex-1 m-3">
-    <%= comment.content %>
-  </div>
-  <% if comment.user_id == current_user.id %>
+<%= turbo_frame_tag dom_id(comment) do %>
+  <div id="<%= dom_id comment %>" class="flex m-3 bg-slate-100 p-3 rounded-md">
     <div class="flex flex-col">
-      <%= link_to '#', title: 'Edit comment' do %>
-        <%= fa_icon 'pencil' %>
-      <% end %>
-      <%= link_to panel_campaign_comment_path(comment.campaign, comment), title: 'Delete comment',
-                  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
-        <%= fa_icon 'trash' %>
-      <% end %>
+      <%= image_tag comment.user.avatar.variant(:thumb), class: 'rounded-full' %>
+      <p><%= UserDecorator.decorate(comment.user).full_name %></p>
     </div>
-  <% end %>
-</div>
+    <% if comment.created_at != comment.updated_at %>
+      <div class="text-slate-200" title="<%= "Edited at #{time_ago_in_words(comment.updated_at)} ago" %>">Edited</div>
+    <% end %>
+    <div class="flex-1 m-3">
+      <%= comment.content %>
+    </div>
+    <% if comment.user_id == current_user.id %>
+      <div class="flex flex-col">
+        <%= link_to edit_panel_campaign_comment_path(comment.campaign, comment), title: 'Edit comment' do %>
+          <%= fa_icon 'pencil' %>
+        <% end %>
+        <%= link_to panel_campaign_comment_path(comment.campaign, comment), title: 'Delete comment',
+                    data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+          <%= fa_icon 'trash' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

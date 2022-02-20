@@ -1,14 +1,7 @@
+<div class="form-inputs bg-white">
+  <%= form.rich_text_area :content %>
+</div>
 
-<%= form_with model: @comment, url: panel_campaign_comments_path(@comment.campaign), class: 'm-5',
-              data: { turbo_frame: "comments-for-campaign-#{@comment.campaign.id}" } do |form| %>
-  <% frame_id = dom_id @comment.campaign, "comments-form-for" %>
-  <%= turbo_frame_tag frame_id, class: 'm-3' do  %>
-    <div class="form-inputs">
-      <%= form.rich_text_area :content %>
-    </div>
-
-    <div class="m-3">
-      <%= form.submit class: 'hover:text-white p-2 rounded-md border-slate-300 border-2 cursor-pointer hover:bg-blue-600' %>
-    </div>
-  <% end %>
-<% end %>
+<div class="m-3">
+  <%= form.submit class: 'hover:text-white p-2 rounded-md border-slate-300 border-2 cursor-pointer hover:bg-blue-600' %>
+</div>
