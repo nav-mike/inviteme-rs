@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "comments-for-campaign-#{campaign.id}", class: 'flex flex-col' do %>
+  <% comments.each do |item| %>
+    <%= render 'panel/campaigns/comments/comment', comment: item %>
+  <% end %>
+  <%= link_to 'Load more', panel_campaign_comments_path(campaign, page: page + 1), class: 'ml-3 mb-3 text-center' %>
+<% end %>

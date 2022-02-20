@@ -1,5 +1,7 @@
 module Panel
   class CampaignsController < Panel::ApplicationController
+    DEFAULT_COMMENTS_COUNT = 5
+
     before_action :set_campaign, only: %i[destroy edit update]
 
     def index
@@ -20,7 +22,8 @@ module Panel
     def show
       @campaign = Campaign.includes(:comments).find(params[:id])
       @comment = Comment.new user: current_user, campaign: @campaign
-      @comments = @campaign.comments.with_rich_text_content_and_embeds.order(created_at: :asc).page(params[:page])
+      @comments = @campaign.comments.with_rich_text_content_and_embeds.order(created_at: :desc)
+                           .limit(DEFAULT_COMMENTS_COUNT)
       respond_to do |format|
         format.html { @campaign = Panel::CampaignDecorator.decorate(set_campaign) }
         format.csv do

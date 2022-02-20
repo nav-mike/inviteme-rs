@@ -1,11 +1,24 @@
 module Panel
   module Campaigns
     class CommentsController < ApplicationController
+      COMMENTS_PER_PAGE = 10
+
       before_action :set_comment, only: %i[show edit update destroy]
+      before_action :set_campaign, only: %i[index]
 
       # GET /comments or /comments.json
       def index
-        @comments = Comment.all
+        @page = (params[:page] || 1).to_i
+        @comments = @campaign.comments.order(created_at: :desc).limit(
+          Panel::CampaignsController::DEFAULT_COMMENTS_COUNT + (COMMENTS_PER_PAGE * @page)
+        )
+
+        render turbo_stream: turbo_stream.replace(
+          "comments-for-campaign-#{@campaign.id}",
+          target: "comments-for-campaign-#{@campaign.id}",
+          partial: "panel/campaigns/comments/comments",
+          locals: { comments: @comments, campaign: @campaign, page: @page }
+        )
       end
 
       # GET /comments/1 or /comments/1.json
@@ -70,8 +83,12 @@ module Panel
 
       # Use callbacks to share common setup or constraints between actions.
       def set_comment
-        @campaign = Campaign.find(params[:campaign_id])
+        @campaign = set_campaign
         @comment = @campaign.comments.find(params[:id])
+      end
+
+      def set_campaign
+        @campaign = Campaign.find(params[:campaign_id])
       end
 
       # Only allow a list of trusted parameters through.
