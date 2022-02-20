@@ -16,4 +16,8 @@ class Comment < ApplicationRecord
                          partial: 'panel/campaigns/comments/add_comment_btn',
                          locals: { campaign: campaign }
   end
+
+  after_destroy_commit do
+    broadcast_remove_to "comments-for-campaign-#{campaign_id}"
+  end
 end

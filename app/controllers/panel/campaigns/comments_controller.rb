@@ -60,8 +60,9 @@ module Panel
         @comment.destroy
 
         respond_to do |format|
-          format.html { redirect_to comments_url, notice: "Comment was successfully destroyed." }
+          format.html { redirect_to panel_campaign_path(@campaign), notice: "Comment was successfully destroyed." }
           format.json { head :no_content }
+          format.turbo_stream { turbo_stream.remove @comment }
         end
       end
 
@@ -69,7 +70,8 @@ module Panel
 
       # Use callbacks to share common setup or constraints between actions.
       def set_comment
-        @comment = Comment.find(params[:id])
+        @campaign = Campaign.find(params[:campaign_id])
+        @comment = @campaign.comments.find(params[:id])
       end
 
       # Only allow a list of trusted parameters through.

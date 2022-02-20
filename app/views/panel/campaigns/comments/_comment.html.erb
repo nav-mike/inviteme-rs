@@ -14,7 +14,8 @@
       <%= link_to '#', title: 'Edit comment' do %>
         <%= fa_icon 'pencil' %>
       <% end %>
-      <%= link_to '#', title: 'Delete comment' do %>
+      <%= link_to panel_campaign_comment_path(comment.campaign, comment), title: 'Delete comment',
+                  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
         <%= fa_icon 'trash' %>
       <% end %>
     </div>
