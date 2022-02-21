@@ -9,4 +9,6 @@ class PagesController < ApplicationController
   def contacts(); end
 
   def features(); end
+
+  def beta(); end
 end

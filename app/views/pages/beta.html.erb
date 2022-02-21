@@ -1,0 +1,31 @@
+<div class="flex w-full justify-center h-content">
+  <div class="flex flex-col p-5 rounded-md bg-slate-100">
+    <div class="flex flex-col items-center">
+      <h1 class="text-3xl m-2">Closed beta request</h1>
+      <p class="text-sm m-2">
+        Fill the form and we'll get back to you as soon as possible.
+      </p>
+    </div>
+    <%= form_tag beta_path, class: 'flex flex-col justify-evenly m-5' do %>
+      <div class="m-3 flex flex-col">
+        <%= label_tag :full_name, 'Full name' %>
+        <%= text_field_tag :full_name, '', placeholder: 'Enter your full name',
+                           required: true, class: 'p-2 rounded-md' %>
+      </div>
+
+      <div class="m-3 flex flex-col">
+        <%= label_tag :email, 'email' %>
+        <%= text_field_tag :email, '', placeholder: 'Enter your business email',
+                           required: true, class: 'p-2 rounded-md' %>
+      </div>
+
+      <div class="m-3 flex flex-col">
+        <%= label_tag :company, 'Company name' %>
+        <%= text_field_tag :company, '', placeholder: 'Enter your company name',
+                           required: true, class: 'p-2 rounded-md' %>
+      </div>
+
+      <%= submit_tag 'Request', class: 'm-5 p-3 bg-blue-600 rounded-md text-white cursor-pointer hover:bg-blue-900' %>
+    <% end %>
+  </div>
+</div>
