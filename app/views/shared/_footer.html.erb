@@ -1,0 +1,23 @@
+<div class="bg-slate-900 text-white p-3">
+  <ul class="flex justify-evenly p-5">
+    <li>
+      <%= link_to 'About', about_path, class: 'hover:underline' %>
+    </li>
+    <li>
+      <%= link_to 'Features', about_path, class: 'hover:underline' %>
+    </li>
+    <li>
+      <%= link_to 'Pricing', pricing_path, class: 'hover:underline' %>
+    </li>
+    <li>
+      <%= link_to 'Help', about_path, class: 'hover:underline' %>
+    </li>
+    <li>
+      <%= link_to 'Documentation', about_path, class: 'hover:underline' %>
+    </li>
+    <li>
+      <%= link_to 'Privacy Policy', about_path, class: 'hover:underline' %>
+    </li>
+  </ul>
+  <p class="text-center">&copy; <%= Time.zone.now.year %> InviteMe. All rights reserved</p>
+</div>
