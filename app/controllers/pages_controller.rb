@@ -11,4 +11,6 @@ class PagesController < ApplicationController
   def features(); end
 
   def beta(); end
+
+  def custom(); end
 end

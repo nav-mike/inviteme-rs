@@ -44,4 +44,5 @@ Rails.application.routes.draw do
   get '/contacts', to: 'pages#contacts', as: :contacts
   get '/features', to: 'pages#features', as: :features
   get '/beta', to: 'pages#beta', as: :beta
+  get '/custom', to: 'pages#custom', as: :custom
 end

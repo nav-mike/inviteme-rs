@@ -1,7 +1,7 @@
 <div class="flex w-full justify-center h-fit">
   <div class="flex flex-col p-5 rounded-md bg-slate-100">
     <div class="flex flex-col items-center">
-      <h1 class="text-3xl m-2">Closed beta request</h1>
+      <h1 class="text-3xl m-2">Custom plan request</h1>
       <p class="text-sm m-2">
         Fill the form and we'll get back to you as soon as possible.
       </p>
@@ -22,6 +22,12 @@
       <div class="m-3 flex flex-col">
         <%= label_tag :company, 'Company name' %>
         <%= text_field_tag :company, '', placeholder: 'Enter your company name',
+                           required: true, class: 'p-2 rounded-md' %>
+      </div>
+
+      <div class="m-3 flex flex-col">
+        <%= label_tag :comment, 'Comments' %>
+        <%= text_area_tag :comment, '', placeholder: 'Provide us more information',
                            required: true, class: 'p-2 rounded-md' %>
       </div>
 
