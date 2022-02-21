@@ -7,4 +7,6 @@ class PagesController < ApplicationController
   def pricing(); end
 
   def contacts(); end
+
+  def features(); end
 end

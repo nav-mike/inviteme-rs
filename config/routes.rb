@@ -42,4 +42,5 @@ Rails.application.routes.draw do
   get '/about', to: 'pages#about', as: :about
   get '/pricing', to: 'pages#pricing', as: :pricing
   get '/contacts', to: 'pages#contacts', as: :contacts
+  get '/features', to: 'pages#features', as: :features
 end

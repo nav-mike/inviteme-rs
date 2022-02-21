@@ -1,0 +1,92 @@
+<div class="flex flex-col w-full">
+  <div class="flex flex-col items-center">
+    <h1 class="text-3xl m-2">Our features</h1>
+    <p class="text-sm m-2">
+      Use these features to grow your projects. Visit <%= link_to 'pricing', pricing_path, class: 'underline' %> page to know more about our plans.
+    </p>
+  </div>
+  <div class="grid grid-cols-3 gap-4 m-6 bg-slate-100 p-6 rounded-md">
+    <div class="flex flex-col items-center">
+      <div class="m-2">
+        <%= fa_icon 'users 2x' %>
+      </div>
+      <div class="m-2">
+        <p class="text-xl font-bold">Teams support</p>
+      </div>
+      <div class="m-2">
+        <p class="text-center">Organize your work using team management system with flexible access rules.</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <div class="m-2">
+        <%= fa_icon 'cc-stripe 2x' %>
+      </div>
+      <div class="m-2">
+        <p class="text-xl font-bold">Easy Stripe integration</p>
+      </div>
+      <div class="m-2">
+        <p class="text-center">
+          Connect your InviteMe account to Stripe account and enjoy auto applying rewards for your promoters.
+          No more manual payments.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <div class="m-2">
+        <%= fa_icon 'globe 2x' %>
+      </div>
+      <div class="m-2">
+        <p class="text-xl font-bold">API support</p>
+      </div>
+      <div class="m-2">
+        <p class="text-center">
+          Use our public API to integrate with your existing applications. Add new promoters and referrals, manage rewards.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <div class="m-2">
+        <%= fa_icon 'share-alt 2x' %>
+      </div>
+      <div class="m-2">
+        <p class="text-xl font-bold">JavaScript support</p>
+      </div>
+      <div class="m-2">
+        <p class="text-center">
+          Just add our JavaScript code to your website and start promoting your projects.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <div class="m-2">
+        <%= fa_icon 'credit-card 2x' %>
+      </div>
+      <div class="m-2">
+        <p class="text-xl font-bold">Flexible plans</p>
+      </div>
+      <div class="m-2">
+        <p class="text-center">
+          Visit our <%= link_to 'pricing', pricing_path, class: 'underline' %> page to know more about our plans.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <div class="m-2">
+        <%= fa_icon 'clock-o 2x' %>
+      </div>
+      <div class="m-2">
+        <p class="text-xl font-bold">Lifelong free plan</p>
+      </div>
+      <div class="m-2">
+        <p class="text-center">
+          You can choose our <%= link_to 'free plan', pricing_path, class: 'underline' %> with no time limitations. No credit card required.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
