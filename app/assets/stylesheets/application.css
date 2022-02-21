@@ -78,5 +78,5 @@ html, body {
 }
 
 .min-page-size {
-  min-height: calc(100vh - 175px);
+  min-height: calc(100vh - 180px);
 }
