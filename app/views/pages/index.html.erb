@@ -1,1 +1,12 @@
-index
+<div class="flex justify-evenly items-center w-full">
+  <div>
+    <h1 class="text-3xl">Create and manage your referrals program easily</h1>
+    <p class="mt-10">
+      <%= link_to 'Get Started', current_user ? panel_path : signin_path,
+                  class: 'rounded-md bg-purple-600 text-white px-6 py-4 hover:bg-purple-800' %>
+    </p>
+  </div>
+  <div>
+    <%= image_tag 'example.png', alt: 'Example of dashboard', size: '600' %>
+  </div>
+</div>

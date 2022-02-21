@@ -80,3 +80,7 @@ html, body {
 .min-page-size {
   min-height: calc(100vh - 180px);
 }
+
+.bg-custom-grey {
+  background-image: url(background.jpg);
+}
