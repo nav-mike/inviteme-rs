@@ -1,1 +1,71 @@
-<h1>About</h1>
+<div class="flex flex-col w-full">
+  <div class="flex flex-col items-center">
+    <h1 class="text-3xl m-2">About</h1>
+    <p class="text-sm m-2">
+      We are building a new referrals platform for the next generation of developers.
+      Support API and JavaScript integration. Stripe support. Our goal to make referral system easy to use.
+      Started in 2022 we offer an easy to use platform for developers to store, collect and manage your promoters and referrals.
+    </p>
+  </div>
+  <div class="grid grid-cols-4 gap-4 m-6 bg-slate-100 p-6 rounded-md">
+    <div class="flex flex-col items-center border-2 rounded-md">
+      <div class="m-2">
+        <%= fa_icon 'smile-o 2x' %>
+      </div>
+      <div class="m-2">
+        <p class="text-xl font-bold">Simple</p>
+      </div>
+      <div class="m-2">
+        <p class="text-center">
+          Organize your work using team management system with flexible access rules. Use API or JavaScript integration.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center border-2 rounded-md">
+      <div class="m-2">
+        <%= fa_icon 'bolt 2x' %>
+      </div>
+      <div class="m-2">
+        <p class="text-xl font-bold">Fast</p>
+      </div>
+      <div class="m-2">
+        <p class="text-center">
+          Using our integrations are simple - no need to install any plugins. Very understandable and simple alogrithm.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center border-2 rounded-md">
+      <div class="m-2">
+        <%= fa_icon 'money 2x' %>
+      </div>
+      <div class="m-2">
+        <p class="text-xl font-bold">Affordable</p>
+      </div>
+      <div class="m-2">
+        <p class="text-center">
+          Start for free with our powerful free plan. Credit card is not required.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center border-2 rounded-md">
+      <div class="m-2">
+        <%= fa_icon 'eye-slash 2x' %>
+      </div>
+      <div class="m-2">
+        <p class="text-xl font-bold">No Hidden Fees</p>
+      </div>
+      <div class="m-2">
+        <p class="text-center">
+          No hidden costs. No hidden charges. No overcharges. We provide you exactly what you use with no hidden fees.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-yellow-100 p-5 rounded-md">
+    Do you have any questions? Need some help? Feel free to contact us using the <%= link_to 'form', contacts_path, class: 'underline' %>.
+  </div>
+</div>
