@@ -15,4 +15,6 @@ class PagesController < ApplicationController
   def custom(); end
 
   def cookies(); end
+
+  def privacy(); end
 end

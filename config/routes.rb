@@ -46,4 +46,5 @@ Rails.application.routes.draw do
   get '/beta', to: 'pages#beta', as: :beta
   get '/custom', to: 'pages#custom', as: :custom
   get '/cookies', to: 'pages#cookies', as: :cookies
+  get '/privacy', to: 'pages#privacy', as: :privacy
 end
