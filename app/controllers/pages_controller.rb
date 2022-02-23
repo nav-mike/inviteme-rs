@@ -13,4 +13,6 @@ class PagesController < ApplicationController
   def beta(); end
 
   def custom(); end
+
+  def cookies(); end
 end
