@@ -14,7 +14,7 @@ module Api
     end
 
     def button_hash_by_status(status)
-      raise ArgumentError.new('Invalid status') unless HREFS.key?(status.to_s)
+      raise ArgumentError, 'Invalid status' unless HREFS.key?(status.to_s)
 
       HREFS[status.to_s]
     end

@@ -6,11 +6,10 @@ module Promoters
 
     class << self
       def call(_campaign)
-        CSV.generate(headers: true) do
-          _1 << HEADERS
+        CSV.generate(headers: true) do |csv|
+          csv << HEADERS
         end
       end
     end
   end
 end
-

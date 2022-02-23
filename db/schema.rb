@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_15_150311) do
+ActiveRecord::Schema.define(version: 2022_02_23_160457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -88,6 +88,13 @@ ActiveRecord::Schema.define(version: 2022_02_15_150311) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "panel_teams", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "log_data"
   end
 
   create_table "promoters", force: :cascade do |t|
@@ -561,5 +568,8 @@ ActiveRecord::Schema.define(version: 2022_02_15_150311) do
   SQL
   create_trigger :logidze_on_tickets, sql_definition: <<-SQL
       CREATE TRIGGER logidze_on_tickets BEFORE INSERT OR UPDATE ON public.tickets FOR EACH ROW WHEN ((COALESCE(current_setting('logidze.disabled'::text, true), ''::text) <> 'on'::text)) EXECUTE FUNCTION logidze_logger('null', 'updated_at')
+  SQL
+  create_trigger :logidze_on_panel_teams, sql_definition: <<-SQL
+      CREATE TRIGGER logidze_on_panel_teams BEFORE INSERT OR UPDATE ON public.panel_teams FOR EACH ROW WHEN ((COALESCE(current_setting('logidze.disabled'::text, true), ''::text) <> 'on'::text)) EXECUTE FUNCTION logidze_logger('null', 'updated_at')
   SQL
 end
