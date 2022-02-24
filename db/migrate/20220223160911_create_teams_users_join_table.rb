@@ -1,8 +1,8 @@
 class CreateTeamsUsersJoinTable < ActiveRecord::Migration[7.0]
   def change
-    create_join_table :teams, :users do |t|
-      t.index :user_id
-      t.index :team_id
+    create_table :panel_teams_users, id: false do |t|
+      t.references :panel_team, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
     end
   end
 end

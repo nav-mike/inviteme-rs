@@ -31,6 +31,9 @@ class User < ApplicationRecord
     attachable.variant :medium, resize_to_limit: [256, 256]
   end
 
+  has_and_belongs_to_many :panel_teams, class_name: 'Panel::Team', association_foreign_key: 'panel_team_id'
+  belongs_to :current_team, class_name: 'Panel::Team', optional: true
+
   def assign_default_role
     add_role(:user)
   end

@@ -11,6 +11,12 @@ Rails/CreateTableWithTimestamps:
   Exclude:
     - db/migrate/20220119071331_rolify_create_roles.rb
     - db/migrate/20220128144443_create_active_storage_tables.active_storage.rb
+    - db/migrate/20220223160911_create_teams_users_join_table.rb
 
 Style/Documentation:
   Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Exclude:
+    - app/models/user.rb
+    - app/models/panel/team.rb

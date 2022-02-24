@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_23_160911) do
+ActiveRecord::Schema.define(version: 2022_02_23_161242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -97,6 +97,13 @@ ActiveRecord::Schema.define(version: 2022_02_23_160911) do
     t.jsonb "log_data"
   end
 
+  create_table "panel_teams_users", id: false, force: :cascade do |t|
+    t.bigint "panel_team_id"
+    t.bigint "user_id"
+    t.index ["panel_team_id"], name: "index_panel_teams_users_on_panel_team_id"
+    t.index ["user_id"], name: "index_panel_teams_users_on_user_id"
+  end
+
   create_table "promoters", force: :cascade do |t|
     t.string "email", null: false
     t.string "first_name"
@@ -133,13 +140,6 @@ ActiveRecord::Schema.define(version: 2022_02_23_160911) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
-  create_table "teams_users", id: false, force: :cascade do |t|
-    t.bigint "team_id", null: false
-    t.bigint "user_id", null: false
-    t.index ["team_id"], name: "index_teams_users_on_team_id"
-    t.index ["user_id"], name: "index_teams_users_on_user_id"
-  end
-
   create_table "tickets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.bigint "author_id", null: false
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 2022_02_23_160911) do
     t.datetime "deleted_at", precision: 6
     t.string "token"
     t.string "personal_api_token"
+    t.integer "current_team_id"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["persistence_token"], name: "index_users_on_persistence_token", unique: true
@@ -192,6 +193,8 @@ ActiveRecord::Schema.define(version: 2022_02_23_160911) do
   add_foreign_key "comments", "campaigns"
   add_foreign_key "comments", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "panel_teams_users", "panel_teams"
+  add_foreign_key "panel_teams_users", "users"
   add_foreign_key "tickets", "users", column: "author_id"
   create_function :logidze_logger, sql_definition: <<-SQL
       CREATE OR REPLACE FUNCTION public.logidze_logger()
