@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get '/settings', to: 'settings#show', as: :show_settings
     get '/settings/edit', to: 'settings#edit', as: :edit_settings
     patch '/settings', to: 'settings#update', as: :update_settings
+    patch '/settings/current_team', to: 'settings#update_current_team', as: :update_current_team
   end
 
   # scope :admin do

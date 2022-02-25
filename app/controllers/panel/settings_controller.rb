@@ -20,11 +20,25 @@ module Panel
       end
     end
 
+    def update_current_team
+      raise ValidationError, 'Team not found' unless current_user.panel_teams.find(params[:user][:current_team_id])
+
+      current_user.update current_team_id: params[:user][:current_team_id]
+      redirect_to path_exists?(params[:user][:current_url]) ? params[:user][:current_url] : panel_show_settings_path
+    end
+
     private
 
     def current_user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :personal_api_token,
                                    :first_name, :last_name)
+    end
+
+    def path_exists?(path)
+      Rails.application.routes.recognize_path(path)
+      true
+    rescue ActionController::RoutingError
+      false
     end
   end
 end
