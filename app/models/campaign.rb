@@ -2,6 +2,7 @@ class Campaign < ApplicationRecord
   has_logidze
 
   belongs_to :owner, class_name: 'User'
+  belongs_to :panel_team, class_name: 'Panel::Team'
   has_many :promoters, dependent: :destroy
   has_many :comments, dependent: :destroy
 

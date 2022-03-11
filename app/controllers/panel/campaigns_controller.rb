@@ -8,10 +8,12 @@ module Panel
       respond_to do |format|
         format.html do
           @new_campaign = Campaign.new(amount: 0.0)
-          @campaigns = Campaign.where(owner: current_user).order(created_at: :asc).page(params[:page])
+          @campaigns = Campaign.where(owner: current_user, panel_team: current_user.current_team)
+                               .order(created_at: :asc).page(params[:page])
         end
         format.csv do
-          @campaigns = Campaign.where(owner: current_user).order(created_at: :asc)
+          @campaigns = Campaign.where(owner: current_user, panel_team: current_user.current_team)
+                               .order(created_at: :asc)
           send_data Campaigns::ExportCsv.call(@campaigns), file_name: "campaigns-#{Time.zone.today}.csv"
         end
       end
