@@ -34,5 +34,10 @@
           <%= fa_icon 'cog' %> Settings
         <% end %>
       </li>
+      <li class="flex <%= active_navbar_link_classes(new_team?(params)) %>">
+        <%= link_to new_panel_team_path, class: 'w-full py-3 px-5' do %>
+            <%= fa_icon 'plus-square-o' %> Create team
+        <% end %>
+      </li>
     </ul>
 </div>

@@ -24,7 +24,13 @@ module Panel
 
       respond_to do |format|
         if @panel_team.save
-          format.html { redirect_to panel_team_url(@panel_team), notice: "Team was successfully created." }
+          Notification.create title: 'New team',
+                              message: "New team #{@panel_team.name} has been created",
+                              user: current_user,
+                              message_type: 'success'
+          @panel_team.users << current_user
+          current_user.update current_team: @panel_team
+          format.html { redirect_to panel_path, notice: "Team was successfully created." }
           format.json { render :show, status: :created, location: @panel_team }
         else
           format.html { render :new, status: :unprocessable_entity }

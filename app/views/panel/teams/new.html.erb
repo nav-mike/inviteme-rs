@@ -1,9 +1,8 @@
-<h1>New team</h1>
+<div class="bg-slate-200 w-full p-5">
+  <%- title 'New Team' %>
+  <%= render 'shared/admin/header' %>
 
-<%= render "form", panel_team: @panel_team %>
-
-<br>
-
-<div>
-  <%= link_to "Back to teams", panel_teams_path %>
+  <div class="m-10 border bg-white border-slate-300 rounded-md p-3">
+    <%= render "form", panel_team: @panel_team %>
+  </div>
 </div>
