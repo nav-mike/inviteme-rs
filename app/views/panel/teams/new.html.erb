@@ -3,6 +3,8 @@
   <%= render 'shared/admin/header' %>
 
   <div class="m-10 border bg-white border-slate-300 rounded-md p-3">
-    <%= render "form", panel_team: @panel_team %>
+    <%= form_with model: @panel_team, class: 'flex flex-col new-form' do |f| %>
+      <%= render "form", panel_team: @panel_team, form: f %>
+    <% end %>
   </div>
 </div>

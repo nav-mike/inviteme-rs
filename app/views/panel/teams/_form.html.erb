@@ -1,21 +1,28 @@
-
-<%= form_with model: @panel_team, class: 'flex flex-col', data: { controller: 'avatar-preview' } do |f| %>
+<%= turbo_frame_tag dom_id(panel_team, 'team_name_turbo_frame') do %>
   <div class="flex flex-col m-5">
-    <%= f.label :name, class: 'mb-1' %>
-    <%= f.text_field :name, class: 'rounded-md p-2 border-2', placeholder: 'Team name' %>
+    <%= form.label :name, class: 'mb-1' %>
+    <%= form.text_field :name, class: 'rounded-md p-2 border-2', placeholder: 'Team name' %>
+    <%= link_to 'Cancel', panel_show_settings_path,
+                class: 'flex bg-slate-100 p-2 text-black justify-center items-center rounded turbo-button' %>
+    <%= form.button :submit, class: 'border-2 rounded-md bg-green-100 p-2 text-black turbo-button' %>
   </div>
-  <div class="flex flex-col m-5">
-    <%= f.label :logo, class: 'mb-1' %>
-    <% has_logo = @panel_team.logo.attached? %>
-    <%= f.file_field :logo, class: 'mb-7', accept: 'image/png,image/gif,image/jpeg',
+<% end %>
+<%= turbo_frame_tag dom_id(panel_team , 'team_icon_turbo_frame') do %>
+  <div class="flex flex-col m-5" data-controller="avatar-preview">
+    <%= form.label :logo, class: 'mb-1' %>
+    <% has_logo = panel_team.logo.attached? %>
+    <%= form.file_field :logo, class: 'mb-7', accept: 'image/png,image/gif,image/jpeg',
                      'data-avatar-preview-target': 'avatarInput' %>
-    <%= image_tag @panel_team.logo&.variant(:medium) || '/', size: '80',
+    <%= image_tag panel_team.logo&.variant(:medium) || '/', size: '80',
                   class: "rounded-md #{has_logo ? '' : 'hidden'}", 'data-avatar-preview-target': 'avatarImg' %>
     <span class="<%= has_logo ? 'hidden' : '' %>" data-avatar-preview-target="avatarIcon">
       <%= fa_icon 'users 5x' %>
     </span>
-  </div>
-  <div class="m-5">
-    <%= f.button :submit, class: 'border-2 rounded-md bg-green-300 p-2 hover:bg-green-500' %>
+    <%= link_to 'Cancel', panel_show_settings_path,
+                class: 'flex bg-slate-100 p-2 text-black justify-center items-center rounded turbo-button' %>
+    <%= form.button :submit, class: 'border-2 rounded-md bg-green-100 p-2 text-black turbo-button' %>
   </div>
 <% end %>
+<div class="m-5">
+  <%= form.button :submit, class: 'border-2 rounded-md bg-green-100 p-2 text-black' %>
+</div>

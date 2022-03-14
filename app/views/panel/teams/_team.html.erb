@@ -1,12 +1,53 @@
-<div id="<%= dom_id team %>">
-  <p>
-    <strong>Name:</strong>
-    <%= team.name %>
-  </p>
-
-  <p>
-    <strong>Logo:</strong>
-    <%= link_to team.logo.filename, team.logo if team.logo.attached? %>
-  </p>
-
+<div id="<%= dom_id team%>" class="flex">
+  <% frame_id = dom_id team , 'team_icon_turbo_frame' %>
+  <div class="flex flex-col m-3 p-3 border-2 border-slate-300 rounded-md items-center">
+    <%= form_with model: team, data: { turbo_frame: frame_id } do |form| %>
+      <%= form.file_field :logo, id: :panel_team_logo, accept: 'image/png,image/jpg,image/jpeg',
+                          class: 'hidden', 'data-copy-file-target': 'destination' %>
+      <%= turbo_frame_tag frame_id do %>
+        <% if team.logo.attached? %>
+          <%= image_tag team.logo.variant(:medium), size: '80', class: 'rounded-md' %>
+        <% else %>
+          <%= fa_icon 'users 5x' %>
+        <% end %>
+        <%= link_to 'Edit', edit_panel_team_path(team),
+                    class: 'flex w-full mt-3 p-2 border-2 border-slate-300 rounded-md hover:bg-slate-300 justify-center' %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="flex flex-col w-full">
+    <% frame_id = dom_id team, 'team_name_turbo_frame' %>
+    <%= form_with model: team, data: { turbo_frame: frame_id } do |form| %>
+      <%= turbo_frame_tag frame_id do %>
+        <div class="flex m-3" data-controller="show-pencil"
+             data-action="mouseenter->show-pencil#show
+                          mouseleave->show-pencil#hide">
+          <p class="text-lg font-bold"><%= team.name %></p>
+          <%= link_to edit_panel_team_path(team), class: 'ml-2 flex hidden', 'data-show-pencil-target': 'pencil' do %>
+            <%= fa_icon 'pencil' %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="flex flex-col w-full my-5">
+      <div class="flex flex-col w-full">
+        <p>Add user to the team</p>
+        <%= form_with model: team, class: 'flex' do |f| %>
+          <%= f.text_field :user, class: 'rounded-md p-2 border-2 flex-1', placeholder: 'Enter user email' %>
+          <%= f.button type: :submit, class: 'mx-5' do %>
+            <%= fa_icon 'plus' %>
+          <% end %>
+        <% end %>
+      </div>
+      <p>List of users:</p>
+      <ul class="bg-slate-100 rounded-md p-3 w-full list-decimal">
+        <% team.users.each do |user| %>
+          <li class="mx-5">
+            <%= UserDecorator.decorate(user).full_name_with_email %>
+            <%= user == current_user ? '(you)' : nil %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>

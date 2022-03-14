@@ -84,3 +84,7 @@ html, body {
 .bg-custom-grey {
   background-image: url(background.jpg);
 }
+
+.new-form .turbo-button {
+  display: none;
+}
