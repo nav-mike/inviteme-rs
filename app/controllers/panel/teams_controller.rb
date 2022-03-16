@@ -43,7 +43,10 @@ module Panel
     def update
       respond_to do |format|
         if @panel_team.update(panel_team_params)
-          format.html { redirect_to panel_team_url(@panel_team), notice: "Team was successfully updated." }
+          format.html do
+            redirect_to panel_team_url(@panel_team), notice: "Team was successfully updated."
+            @panel_team.update_team_turbo current_user
+          end
           format.json { render :show, status: :ok, location: @panel_team }
         else
           format.html { render :edit, status: :unprocessable_entity }

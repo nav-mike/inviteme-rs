@@ -10,5 +10,12 @@ module Panel
 
     has_and_belongs_to_many :users, foreign_key: :panel_team_id
     has_many :campaigns, dependent: :destroy
+
+    def update_team_turbo(current_user)
+      broadcast_replace_to "teams-list-for-#{current_user.id}",
+                           target: "teams-list-for-#{current_user.id}",
+                           partial: 'panel/users/current_team',
+                           locals: { user: current_user }
+    end
   end
 end

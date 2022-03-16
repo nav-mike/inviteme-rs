@@ -1,0 +1,4 @@
+<%= select_tag 'user[current_team_id]', options_for_select(user.panel_teams.order(:name).map { [_1.name, _1.id] },
+                                                           user.current_team_id),
+               { id: 'user_current_team_id', class: 'rounded-md p-1 w-60 bg-slate-200 cursor-pointer text-right',
+                 'data-action': 'change->update-current-team#submit' }%>

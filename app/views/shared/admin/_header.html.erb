@@ -3,10 +3,10 @@
     <h1 class="flex-1 text-xl font-medium"><%= content_for?(:title) ? content_for(:title) : 'Default title' %></h1>
     <%= form_with model: current_user, url: panel_update_current_team_path, class: 'mx-3',
                   data: { controller: 'update-current-team', 'update-current-team-target': 'form' } do |f| %>
-      <%= f.select :current_team_id, current_user.panel_teams.order(:name).map { [_1.name, _1.id] },
-                   { selected: current_user.current_team_id },
-                   { class: 'rounded-md p-1 w-60 bg-slate-200 cursor-pointer text-right',
-                     'data-action': 'change->update-current-team#submit' } %>
+      <%= turbo_stream_from "teams-list-for-#{current_user.id}" %>
+      <%= turbo_frame_tag "teams-list-for-#{current_user.id}" do %>
+        <%= render 'panel/users/current_team', user: current_user %>
+      <% end %>
       <%= f.text_field :current_url, value: request.path, class: 'hidden'  %>
     <% end %>
     <%= turbo_stream_from "notification-count-#{current_user.id}" %>
