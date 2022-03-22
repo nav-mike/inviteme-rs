@@ -9,6 +9,7 @@ module ActiveStorage
       blob.analyze
       blob.attachments.includes(:record).each do |attachment|
         attachment.record_type == User.to_s && attachment.record.update_avatar_turbo(Rails.application.routes.url_helpers.rails_blob_url(blob))
+        attachment.record_type == Panel::Team.to_s && attachment.record.update_icon_turbo(Rails.application.routes.url_helpers.rails_blob_url(blob))
       end
     end
   end

@@ -43,6 +43,10 @@ module Panel
     def update
       respond_to do |format|
         if @panel_team.update(panel_team_params)
+          Notification.create title: 'Team was updated',
+                              message: 'Team was successfully updated.',
+                              user: current_user,
+                              message_type: 'success'
           format.html do
             redirect_to panel_team_url(@panel_team), notice: "Team was successfully updated."
             @panel_team.update_team_turbo current_user
@@ -69,7 +73,17 @@ module Panel
 
     # Use callbacks to share common setup or constraints between actions.
     def set_panel_team
-      @panel_team = Panel::Team.find(params[:id])
+      if params[:id] == current_user.current_team.id.to_s
+        @panel_team = current_user.current_team
+      elsif current_user.panel_teams.find(params[:id])
+        @panel_team = current_user.panel_teams.find(params[:id])
+      else
+        Notification.create title: 'Team not found',
+                            message: 'Team is not found or you are not allowed to access it.',
+                            user: current_user,
+                            message_type: 'error'
+        raise ActiveRecord::RecordNotFound
+      end
     end
 
     # Only allow a list of trusted parameters through.

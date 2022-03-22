@@ -17,5 +17,13 @@ module Panel
                            partial: 'panel/users/current_team',
                            locals: { user: current_user }
     end
+
+    def update_icon_turbo(icon)
+      frame_id = ActionView::RecordIdentifier.dom_id self, 'current'
+      broadcast_replace_to frame_id,
+                           target: frame_id,
+                           partial: 'panel/teams/current_team_logo',
+                           locals: { team: self, icon: icon }
+    end
   end
 end

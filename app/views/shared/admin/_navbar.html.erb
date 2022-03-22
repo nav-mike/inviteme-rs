@@ -1,43 +1,49 @@
 <div class="flex flex-col bg-slate-800 text-slate-500 w-1/6 h-auto min-h-screen">
-  <p class="py-7 px-5 font-bold text-xl">Dashboard</p>
-    <ul>
-      <li class="flex<%= active_navbar_link_classes(overview?(params)) %>">
-        <%= link_to panel_path, class: 'w-full py-3 px-5' do %>
-          <%= fa_icon 'pie-chart' %> Overview
-        <% end %>
-      </li>
-      <li class="flex<%= active_navbar_link_classes(campaigns?(params)) %>">
-        <%= link_to panel_campaigns_path, class: 'w-full py-3 px-5' do %>
-          <%= fa_icon 'globe' %> Campaigns
-        <% end %>
-      </li>
-      <li class="flex<%= active_navbar_link_classes(integrations?(params)) %>">
-        <%= link_to panel_integrations_index_path, class: 'w-full py-3 px-5' do %>
-          <%= fa_icon 'plug' %> Integrations
-        <% end %>
-      </li>
-      <li class="flex hover:bg-slate-900 hover:text-slate-300">
-        <%= link_to panel_documentation_path, class: 'w-full py-3 px-5' do %>
-          <%= fa_icon 'book' %> Documentation
-        <% end %>
-      </li>
-      <li class="py-3 px-5">
-        <hr />
-      </li>
-      <li class="flex<%= active_navbar_link_classes(tickets?(params)) %>">
-        <%= link_to new_panel_ticket_path, class: 'w-full py-3 px-5' do %>
-          <%= fa_icon 'bug' %> Report error
-        <% end %>
-      </li>
-      <li class="flex<%= active_navbar_link_classes(settings?(params)) %>">
-        <%= link_to panel_show_settings_path, class: 'w-full py-3 px-5' do %>
-          <%= fa_icon 'cog' %> Settings
-        <% end %>
-      </li>
-      <li class="flex <%= active_navbar_link_classes(new_team?(params)) %>">
-        <%= link_to new_panel_team_path, class: 'w-full py-3 px-5' do %>
-            <%= fa_icon 'plus-square-o' %> Create team
-        <% end %>
-      </li>
-    </ul>
+  <p class="pt-7 px-5 font-bold text-xl">Dashboard</p>
+  <% frame_id = dom_id current_user.current_team, 'current' %>
+  <%= turbo_stream_from frame_id %>
+  <%= turbo_frame_tag frame_id do %>
+    <%= render 'panel/teams/current_team_logo', team: current_user.current_team,
+               icon: current_user.current_team.logo.variant(:medium) %>
+  <% end %>
+  <ul>
+    <li class="flex<%= active_navbar_link_classes(overview?(params)) %>">
+      <%= link_to panel_path, class: 'w-full py-3 px-5' do %>
+        <%= fa_icon 'pie-chart' %> Overview
+      <% end %>
+    </li>
+    <li class="flex<%= active_navbar_link_classes(campaigns?(params)) %>">
+      <%= link_to panel_campaigns_path, class: 'w-full py-3 px-5' do %>
+        <%= fa_icon 'globe' %> Campaigns
+      <% end %>
+    </li>
+    <li class="flex<%= active_navbar_link_classes(integrations?(params)) %>">
+      <%= link_to panel_integrations_index_path, class: 'w-full py-3 px-5' do %>
+        <%= fa_icon 'plug' %> Integrations
+      <% end %>
+    </li>
+    <li class="flex hover:bg-slate-900 hover:text-slate-300">
+      <%= link_to panel_documentation_path, class: 'w-full py-3 px-5' do %>
+        <%= fa_icon 'book' %> Documentation
+      <% end %>
+    </li>
+    <li class="py-3 px-5">
+      <hr />
+    </li>
+    <li class="flex<%= active_navbar_link_classes(tickets?(params)) %>">
+      <%= link_to new_panel_ticket_path, class: 'w-full py-3 px-5' do %>
+        <%= fa_icon 'bug' %> Report error
+      <% end %>
+    </li>
+    <li class="flex<%= active_navbar_link_classes(settings?(params)) %>">
+      <%= link_to panel_show_settings_path, class: 'w-full py-3 px-5' do %>
+        <%= fa_icon 'cog' %> Settings
+      <% end %>
+    </li>
+    <li class="flex <%= active_navbar_link_classes(new_team?(params)) %>">
+      <%= link_to new_panel_team_path, class: 'w-full py-3 px-5' do %>
+          <%= fa_icon 'plus-square-o' %> Create team
+      <% end %>
+    </li>
+  </ul>
 </div>
