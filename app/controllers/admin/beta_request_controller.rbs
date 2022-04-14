@@ -1,0 +1,11 @@
+module Admin
+  class BetaRequestController < ApplicationController
+    attr_reader beta_request: BetaRequest
+
+    def create: () -> untyped
+
+    private
+
+    def beta_request_params: () -> { email: String, full_name: String, company: String }
+  end
+end

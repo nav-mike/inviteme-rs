@@ -59,9 +59,10 @@ ActiveRecord::Schema.define(version: 2022_04_14_151405) do
     t.string "full_name"
     t.string "email"
     t.string "company"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admin_beta_requests_on_email", unique: true
   end
 
   create_table "campaigns", force: :cascade do |t|

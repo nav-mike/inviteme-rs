@@ -1,9 +1,11 @@
-class Admin::BetaRequest < ApplicationRecord
-  attr_accessor full_name: String
+module Admin
+  class BetaRequest < ApplicationRecord
+    attr_accessor full_name: String
 
-  attr_accessor email: String
+    attr_accessor email: String
 
-  attr_accessor company: String
+    attr_accessor company: String
 
-  attr_accessor status: Integer
+    attr_accessor status: String
+  end
 end
