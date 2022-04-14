@@ -1,0 +1,4 @@
+# Create beta request table for admin namespace
+class CreateAdminBetaRequests < 
+  def change: () -> untyped
+end
