@@ -1,0 +1,12 @@
+# User model for auth process
+class User < ApplicationRecord
+  def assign_default_role: () -> untyped
+
+  def require_password?: () -> untyped
+
+  def email_or_names_changed?: () -> untyped
+
+  def generate_personal_token: () -> (nil | untyped)
+
+  def update_avatar_turbo: (untyped avatar) -> untyped
+end

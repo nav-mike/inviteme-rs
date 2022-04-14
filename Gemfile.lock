@@ -257,6 +257,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    rbs (2.3.2)
+    rbs_rails (0.11.0)
+      parser
+      rbs (>= 1)
     redis (4.5.1)
     regexp_parser (2.2.0)
     reline (0.3.1)
@@ -325,6 +329,8 @@ GEM
     turbo-rails (1.0.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    typeprof (0.21.2)
+      rbs (>= 1.8.1)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
@@ -383,6 +389,8 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.1)
+  rbs (~> 2.3)
+  rbs_rails (~> 0.11.0)
   redis (~> 4.0)
   requestjs-rails
   rolify
@@ -396,6 +404,7 @@ DEPENDENCIES
   stimulus-rails
   strong_migrations
   turbo-rails
+  typeprof (~> 0.21.2)
   tzinfo-data
   view_component
   web-console

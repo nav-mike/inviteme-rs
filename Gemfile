@@ -111,3 +111,9 @@ group :test do
 
   gem 'dox', require: false
 end
+
+gem "rbs", "~> 2.3"
+
+gem "rbs_rails", "~> 0.11.0"
+
+gem "typeprof", "~> 0.21.2"
