@@ -1,0 +1,15 @@
+module Panel::PagesHelper
+  def overview?: ({ controller: String, action: String } params) -> bool
+
+  def campaigns?: ({ controller: String, action: String } params) -> bool
+
+  def integrations?: ({ controller: String, action: String } params) -> bool
+
+  def tickets?: ({ controller: String, action: String } params) -> bool
+
+  def settings?: ({ controller: String, action: String } params) -> bool
+
+  def new_team?: ({ controller: String, action: String } params) -> bool
+
+  def active_navbar_link_classes: (bool flag) -> String
+end

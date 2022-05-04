@@ -1,0 +1,11 @@
+module Api
+  module CampaignsHelper
+    HREFS: ::Hash[::String, Hash[Symbol, String]]
+
+    def button_label_by_status: (('reject' | 'approved' | 'payed') status) -> String
+
+    def button_url_by_status: (('reject' | 'approved' | 'payed') status) -> String
+
+    def button_hash_by_status: (('reject' | 'approved' | 'payed') status) -> Hash[Symbol, String]
+  end
+end

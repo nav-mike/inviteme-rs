@@ -1,0 +1,2 @@
+module Panel::SessionHelper
+end

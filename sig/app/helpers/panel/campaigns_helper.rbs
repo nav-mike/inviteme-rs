@@ -1,0 +1,7 @@
+module Panel
+  module CampaignsHelper
+    def form_method: ({ action: 'edit' | 'new' } params) -> (:patch | :post)
+
+    def form_url: ({ action: 'edit' | 'new' } params) -> (:panel_campaign | :panel_campaigns)
+  end
+end

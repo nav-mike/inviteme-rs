@@ -1,0 +1,3 @@
+module ApplicationHelper
+  def title: (String page_title) -> void
+end

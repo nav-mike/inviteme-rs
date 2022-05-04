@@ -8,6 +8,7 @@ target :app do
   check "app/services/**/*.rb"
   check "app/mailers/**/*.rb"
   check "app/jobs/**/*.rb"
+  check "app/helpers/**/*.rb"
   # ignore "lib/templates/*.rb"
 
   library "pathname"       # Standard libraries
