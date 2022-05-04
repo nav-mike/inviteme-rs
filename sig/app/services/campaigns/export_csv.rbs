@@ -1,0 +1,7 @@
+module Campaigns
+  class ExportCsv
+    HEADERS: ::Array[String]
+
+    def self.call: ([Campaign] campaigns) -> String
+  end
+end

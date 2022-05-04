@@ -5,6 +5,7 @@ target :app do
 
   # check "lib"                       # Directory name
   check "app/models/**/*.rb"        # Glob
+  check "app/services/**/*.rb"
   # ignore "lib/templates/*.rb"
 
   library "pathname"       # Standard libraries
@@ -18,6 +19,8 @@ target :app do
   library "tempfile"
   library "time"
   library "date"
+  library "forwardable"
+  library "csv"
 
   repo_path "vendor/rbs/gem_rbs_collection/gems"
 
