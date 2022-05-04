@@ -1,0 +1,13 @@
+class Comment < ApplicationRecord
+  attr_accessor user: User
+
+  attr_accessor campaign: Campaign
+
+  attr_accessor created_at: DateTime
+
+  attr_accessor updated_at: DateTime
+
+  def broadcast_append_to_campaign: (User current_user) -> void
+
+  def broadcast_hide_form: () -> void
+end

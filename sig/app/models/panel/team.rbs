@@ -1,0 +1,19 @@
+module Panel
+  class Team < ApplicationRecord
+    attr_accessor name: String
+
+    attr_accessor created_at: DateTime
+
+    attr_accessor updated_at: DateTime
+
+    def update_team_turbo: (User current_user) -> Team
+
+    def update_icon_turbo: (ActiveStorage::Attachment icon) -> Team
+
+    def broadcast_replace_to: (String frame, { target: untyped, partial: untyped, locals: untyped } options) -> untyped
+
+    def self.has_logidze: () -> untyped
+
+    def self.has_one_attached: (Symbol | String field) { (untyped attachable) -> untyped } -> untyped
+  end
+end

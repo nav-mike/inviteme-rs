@@ -1,0 +1,11 @@
+module Admin
+  class BetaRequest < ApplicationRecord
+    attr_accessor full_name: untyped
+
+    attr_accessor email: untyped
+
+    attr_accessor company: untyped
+
+    attr_accessor status: untyped
+  end
+end

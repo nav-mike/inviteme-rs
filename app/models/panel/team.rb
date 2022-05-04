@@ -2,6 +2,8 @@ module Panel
   class Team < ApplicationRecord
     has_logidze
 
+    attr_accessor :name, :created_at, :updated_at
+
     has_one_attached :logo do |attachable|
       attachable.variant :thumb, resize_to_limit: [128, 128]
       attachable.variant :micro, resize_to_limit: [20, 20]
@@ -16,6 +18,7 @@ module Panel
                            target: "teams-list-for-#{current_user.id}",
                            partial: 'panel/users/current_team',
                            locals: { user: current_user }
+      self
     end
 
     def update_icon_turbo(icon)
@@ -24,6 +27,7 @@ module Panel
                            target: frame_id,
                            partial: 'panel/teams/current_team_logo',
                            locals: { team: self, icon: icon }
+      self
     end
   end
 end

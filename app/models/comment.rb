@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  attr_accessor :user, :campaign, :created_at, :updated_at
+
   belongs_to :user
   belongs_to :campaign
   has_rich_text :content

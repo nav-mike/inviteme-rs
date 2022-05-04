@@ -1,4 +1,6 @@
 class Notification < ApplicationRecord
+  attr_accessor :message_type, :notification_type, :title, :message, :seen, :completed, :user, :created_at, :updated_at
+
   belongs_to :user
 
   enum message_type: { info: 0, success: 1, warning: 2, error: 3 }

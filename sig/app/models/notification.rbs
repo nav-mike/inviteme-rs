@@ -1,0 +1,19 @@
+class Notification < ApplicationRecord
+  attr_accessor message_type: :info | :success | :warning | :error | Integer
+
+  attr_accessor notification_type: :simple | :action_required | Integer
+
+  attr_accessor title: String
+
+  attr_accessor message: String
+
+  attr_accessor seen: bool
+
+  attr_accessor completed: bool
+
+  attr_accessor user: User
+
+  attr_accessor created_at: DateTime
+
+  attr_accessor updated_at: DateTime
+end

@@ -1,0 +1,15 @@
+class Campaign < ApplicationRecord
+  attr_accessor name: String
+
+  attr_accessor owner: User
+
+  attr_accessor token: String
+
+  attr_accessor amount: Float
+
+  attr_accessor created_at: DateTime
+
+  attr_accessor updated_at: DateTime
+
+  attr_accessor panel_team: Panel::Team
+end
