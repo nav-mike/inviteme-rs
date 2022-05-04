@@ -1,0 +1,5 @@
+module ActiveStorage
+  class AnalyzeJob < ActiveStorage::BaseJob
+    def perform: (untyped blob) -> untyped
+  end
+end

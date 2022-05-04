@@ -1,0 +1,9 @@
+module ActiveStorage
+  extend ActiveSupport::Autoload
+
+  module Transformers
+    extend ActiveSupport::Autoload
+  end
+
+  def self.queues: () -> Hash[Symbol, Array[Symbol]]
+end
