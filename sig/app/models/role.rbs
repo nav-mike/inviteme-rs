@@ -1,0 +1,11 @@
+class Role < ApplicationRecord
+  attr_accessor name: String?
+
+  attr_accessor resource_type: String?
+
+  attr_accessor resource_id: Integer?
+
+  attr_accessor created_at: DateTime
+
+  attr_accessor updated_at: DateTime
+end

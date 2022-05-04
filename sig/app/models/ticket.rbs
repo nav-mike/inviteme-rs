@@ -1,0 +1,15 @@
+class Ticket < ApplicationRecord
+  attr_accessor title: String?
+
+  attr_accessor author: User
+
+  attr_accessor author_id: Integer
+
+  attr_accessor status: :pedning | 0 | :confirmed | 1 | :answered | 2 | :updated | 3 | :closed | 4
+
+  attr_accessor message: String?
+
+  attr_accessor created_at: DateTime
+
+  attr_accessor updated_at: DateTime
+end

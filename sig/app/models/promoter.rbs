@@ -1,0 +1,17 @@
+class Promoter < ApplicationRecord
+  attr_accessor email: String
+
+  attr_accessor first_name: String?
+
+  attr_accessor last_name: String?
+
+  attr_accessor campaign: Campaign
+
+  attr_accessor campaign_id: Integer
+
+  attr_accessor token: String
+
+  attr_accessor created_at: DateTime
+
+  attr_accessor updated_at: DateTime
+end
