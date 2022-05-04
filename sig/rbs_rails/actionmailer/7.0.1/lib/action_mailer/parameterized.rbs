@@ -1,0 +1,33 @@
+module ActionMailer
+  module Parameterized
+    extend ActiveSupport::Concern
+
+    attr_accessor params: untyped
+
+    module ClassMethods
+      def with: (untyped params) -> untyped
+    end
+
+    class Mailer
+      # :nodoc:
+      def initialize: (untyped mailer, untyped params) -> void
+
+      private
+
+      def method_missing: (untyped method_name, *untyped args) -> untyped
+
+      def respond_to_missing?: (untyped method, ?bool include_all) -> untyped
+    end
+
+    class MessageDelivery < ActionMailer::MessageDelivery
+      # :nodoc:
+      def initialize: (untyped mailer_class, untyped action, untyped params, *untyped args) -> void
+
+      private
+
+      def processed_mailer: () -> untyped
+
+      def enqueue_delivery: (untyped delivery_method, ?::Hash[untyped, untyped] options) -> untyped
+    end
+  end
+end

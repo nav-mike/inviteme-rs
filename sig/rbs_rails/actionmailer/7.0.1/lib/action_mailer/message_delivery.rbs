@@ -1,0 +1,86 @@
+module ActionMailer
+  class MessageDelivery < Delegator
+    def initialize: (untyped mailer_class, untyped action, *untyped args) -> void
+
+    def __getobj__: () -> untyped
+
+    def __setobj__: (untyped mail_message) -> untyped
+
+    # Returns the resulting Mail::Message
+    def message: () -> untyped
+
+    # Was the delegate loaded, causing the mailer action to be processed?
+    def processed?: () -> untyped
+
+    # Enqueues the email to be delivered through Active Job. When the
+    # job runs it will send the email using +deliver_now!+. That means
+    # that the message will be sent bypassing checking +perform_deliveries+
+    # and +raise_delivery_errors+, so use with caution.
+    #
+    #   Notifier.welcome(User.first).deliver_later!
+    #   Notifier.welcome(User.first).deliver_later!(wait: 1.hour)
+    #   Notifier.welcome(User.first).deliver_later!(wait_until: 10.hours.from_now)
+    #   Notifier.welcome(User.first).deliver_later!(priority: 10)
+    #
+    # Options:
+    #
+    # * <tt>:wait</tt> - Enqueue the email to be delivered with a delay
+    # * <tt>:wait_until</tt> - Enqueue the email to be delivered at (after) a specific date / time
+    # * <tt>:queue</tt> - Enqueue the email on the specified queue
+    # * <tt>:priority</tt> - Enqueues the email with the specified priority
+    #
+    # By default, the email will be enqueued using <tt>ActionMailer::MailDeliveryJob</tt>. Each
+    # <tt>ActionMailer::Base</tt> class can specify the job to use by setting the class variable
+    # +delivery_job+.
+    #
+    #   class AccountRegistrationMailer < ApplicationMailer
+    #     self.delivery_job = RegistrationDeliveryJob
+    #   end
+    def deliver_later!: (?::Hash[untyped, untyped] options) -> untyped
+
+    # Enqueues the email to be delivered through Active Job. When the
+    # job runs it will send the email using +deliver_now+.
+    #
+    #   Notifier.welcome(User.first).deliver_later
+    #   Notifier.welcome(User.first).deliver_later(wait: 1.hour)
+    #   Notifier.welcome(User.first).deliver_later(wait_until: 10.hours.from_now)
+    #   Notifier.welcome(User.first).deliver_later(priority: 10)
+    #
+    # Options:
+    #
+    # * <tt>:wait</tt> - Enqueue the email to be delivered with a delay.
+    # * <tt>:wait_until</tt> - Enqueue the email to be delivered at (after) a specific date / time.
+    # * <tt>:queue</tt> - Enqueue the email on the specified queue.
+    # * <tt>:priority</tt> - Enqueues the email with the specified priority
+    #
+    # By default, the email will be enqueued using <tt>ActionMailer::MailDeliveryJob</tt>. Each
+    # <tt>ActionMailer::Base</tt> class can specify the job to use by setting the class variable
+    # +delivery_job+.
+    #
+    #   class AccountRegistrationMailer < ApplicationMailer
+    #     self.delivery_job = RegistrationDeliveryJob
+    #   end
+    def deliver_later: (?::Hash[untyped, untyped] options) -> untyped
+
+    # Delivers an email without checking +perform_deliveries+ and +raise_delivery_errors+,
+    # so use with caution.
+    #
+    #   Notifier.welcome(User.first).deliver_now!
+    #
+    def deliver_now!: () -> untyped
+
+    # Delivers an email:
+    #
+    #   Notifier.welcome(User.first).deliver_now
+    #
+    def deliver_now: () -> untyped
+
+    private
+
+    # Returns the processed Mailer instance. We keep this instance
+    # on hand so we can delegate exception handling to it.
+    def processed_mailer: () -> untyped
+
+    def enqueue_delivery: (untyped delivery_method, ?::Hash[untyped, untyped] options) -> untyped
+  end
+end

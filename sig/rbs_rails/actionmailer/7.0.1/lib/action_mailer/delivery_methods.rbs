@@ -1,0 +1,13 @@
+module ActionMailer
+  module DeliveryMethods
+    extend ActiveSupport::Concern
+
+    module ClassMethods
+      def add_delivery_method: (untyped symbol, untyped klass, ?::Hash[untyped, untyped] default_options) -> untyped
+
+      def wrap_delivery_behavior: (untyped mail, ?untyped? method, ?untyped? options) -> untyped
+    end
+
+    def wrap_delivery_behavior!: (*untyped args) -> untyped
+  end
+end

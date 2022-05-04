@@ -6,6 +6,7 @@ target :app do
   # check "lib"                       # Directory name
   check "app/models/**/*.rb"        # Glob
   check "app/services/**/*.rb"
+  check "app/mailers/**/*.rb"
   # ignore "lib/templates/*.rb"
 
   library "pathname"       # Standard libraries

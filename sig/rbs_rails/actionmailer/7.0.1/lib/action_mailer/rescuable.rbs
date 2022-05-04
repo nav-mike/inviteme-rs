@@ -1,0 +1,15 @@
+module ActionMailer
+  module Rescuable
+    extend ActiveSupport::Concern
+
+    include ActiveSupport::Rescuable
+
+    def handle_exception: (untyped exception) -> untyped
+
+    def handle_exceptions: () { () -> untyped } -> untyped
+
+    private
+
+    def process: () -> untyped
+  end
+end
